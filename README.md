@@ -7,6 +7,8 @@
 - [x] Von Shader auf ShaderProgram.h wechseln
 - [x] Den Shader Part von OpenGLHelper.h obsolete machen
 - [x] ShaderProgram in DisplayImageScene einbinden
-- [X] FPS counter
-- [] key forwarding zur Scene
+- [x] FPS counter
+- [x] key forwarding zur Scene
 
+# About
+This is a small little Project for learning Graphics Programming with `OpenGL`, `GLFW`, `ImGui` and building an own "Engine". This "Engine" is build from diverse public sources for learning `OpenGL`. Mainly [LearnOpenGL.com](https://learnopengl.com).
