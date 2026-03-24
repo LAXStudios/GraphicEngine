@@ -1,3 +1,0 @@
-/home/lax/Coding/GraphicEngine/build/CMakeFiles/GraphicEngine.dir
-/home/lax/Coding/GraphicEngine/build/CMakeFiles/edit_cache.dir
-/home/lax/Coding/GraphicEngine/build/CMakeFiles/rebuild_cache.dir
