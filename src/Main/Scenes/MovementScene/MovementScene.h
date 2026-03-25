@@ -152,12 +152,12 @@ public:
     // view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
     deltaTime = dt;
 
-    view = glm::mat4(1.0f);
+    // view = glm::mat4(1.0f);
     view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
   }
 
   void OnResize(float aspectRatio) override {
-    std::cout << "OnResize\n";
+    std::cout << "[MovementScene] OnResize\n";
     proj = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
     shaderProgramPtr->setUniformMatrix4fv("proj", proj);
   }

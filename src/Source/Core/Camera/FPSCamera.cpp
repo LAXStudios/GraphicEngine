@@ -37,9 +37,9 @@ void FPSCamera::ProcessKeyboard(CameraMovement direction, float deltaTime) {
   if (direction == BACKWARD)
     Position -= Front * velocity;
   if (direction == RIGHT)
-    Right += Right * velocity;
+    Position += Right * velocity;
   if (direction == LEFT)
-    Right -= Right * velocity;
+    Position -= Right * velocity;
 }
 
 void FPSCamera::ProcessMouseMovement(float xOffset, float yOffset,

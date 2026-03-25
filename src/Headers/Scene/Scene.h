@@ -38,9 +38,13 @@ public:
   virtual ~Scene() = default;
   virtual void InitScene() {}
   virtual void InitScene(GLFWwindow *window) {}
+
+  // Gets the Input Data through the Main-Loop.
   virtual void HandleInput(GLFWwindow *window) {}
+  // Gets the Input Data through the GLFW key Callback.
   virtual void HandleInput(GLFWwindow *window, int key, int scancode,
                            int action, int mods) {}
+
   virtual void Update(float dt) = 0;
   virtual void Render() = 0;
   virtual void HandleMouseInput(GLFWwindow *window, double xpos, double ypos) {}

@@ -14,6 +14,7 @@
 #include "../Texture/Texture.h"
 #include "../VertexArray/VertexArray.h"
 #define NOTHING
+#include "../../../Headers/Core/Camera/FPSCamera.h"
 #include "../IndexBuffer/IndexBuffer.h"
 #include "../Renderer/RendererWrapper.h"
 #include "ErrorHandling.h"

@@ -1,4 +1,5 @@
 #include "CatCubes3DScene/CatCubes3DScene.h"
+#include "ColorLightingScene/ColorLightingScene.h"
 #include "ColoredPolygonScene/ColoredPolygonScene.h"
 #include "ImageTextureScenes/DisplayImageScene.h"
 #include "MovementScene/MovementScene.h"
