@@ -1,3 +1,4 @@
+#include "BasicMaterialScene/BasicMaterialScene.h"
 #include "CatCubes3DScene/CatCubes3DScene.h"
 #include "ColorLightingScene/ColorLightingScene.h"
 #include "ColoredPolygonScene/ColoredPolygonScene.h"

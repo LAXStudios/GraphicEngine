@@ -36,7 +36,8 @@ public:
 
   unsigned int getUniformLocation(const std::string &uniformName);
 
-  void setUniform1i(const std::string &name, int value);
+  void setUniform1i(const std::string &uniformName, int value);
+  void setUniform1f(const std::string &uniformName, float value);
   void setUniform3f(const std::string &uniformName, float v1, float v2,
                     float v3);
   void setUniformMatrix4fv(const std::string &uniformName, glm::mat4 matrix);

@@ -126,6 +126,12 @@ void ShaderProgram::setUniform1i(const std::string &uniformName, int value) {
   // this->UnBind();
 }
 
+void ShaderProgram::setUniform1f(const std::string &uniformName, float value) {
+  this->Bind();
+  glCall(glUniform1f(getUniformLocation(uniformName), value));
+  this->UnBind();
+}
+
 void ShaderProgram::setUniform3f(const std::string &uniformName, float v1,
                                  float v2, float v3) {
   this->Bind();

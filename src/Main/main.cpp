@@ -27,6 +27,8 @@ int main(int argc, char *argv[]) {
   application.RegisterScene(std::make_unique<MovementScene>("MovementScene"));
   application.RegisterScene(
       std::make_unique<ColorLightningScene>("ColorLightningScene"));
+  application.RegisterScene(
+      std::make_unique<BasicMaterialScene>("BasicMaterialScene"));
 
   application.Init();
 
