@@ -26,6 +26,11 @@ private:
 
   glm::vec3 lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
 
+  bool firstMouse = true;
+  bool isCursorHidden = false;
+
+  float lastX, lastY;
+
 public:
   ColorLightningScene(const std::string &name) : Scene(name) {}
 
@@ -51,6 +56,7 @@ public:
 
     VertexBufferLayout layout;
     layout.AddElement<float>(3);
+    layout.AddElement<float>(3);
     cubeVAOPtr->AddBuffer(*vertexBufferPtr, layout);
 
     cubeVAOPtr->UnBind();
@@ -58,17 +64,10 @@ public:
 
     proj = glm::perspective(glm::radians(fpsCamera.Zoom), 1280.0f / 800.0f,
                             0.1f, 100.0f);
-  }
 
-  void HandleInput(GLFWwindow *window) override {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+    glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    isCursorHidden = true;
   }
 
   void Update(float dt) override { deltaTime = dt; }
@@ -83,6 +82,8 @@ public:
     view = fpsCamera.GetViewMatrix();
     lightingShaderProgramPtr->setUniformMatrix4fv("projection", proj);
     lightingShaderProgramPtr->setUniformMatrix4fv("view", view);
+    lightingShaderProgramPtr->setUniform3fv("lightPos", lightPos);
+    lightingShaderProgramPtr->setUniform3fv("viewPos", fpsCamera.Position);
 
     glm::mat4 model = glm::mat4(1.0f);
     lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
@@ -107,7 +108,69 @@ public:
     lightCubeShaderProgramPtr->setUniformMatrix4fv("proj", proj);
   }
 
+  void HandleInput(GLFWwindow *window) override {
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+      fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+      fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+      fpsCamera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+      fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+  }
+
+  void HandleInput(GLFWwindow *window, int key, int scancode, int action,
+                   int mod) override {
+    if (key == GLFW_KEY_TAB && action == GLFW_PRESS)
+      changeCursorState(window);
+  }
+
+  void HandleMouseInput(GLFWwindow *window, double xpos, double ypos) override {
+    float xPos = static_cast<float>(xpos);
+    float yPos = static_cast<float>(ypos);
+
+    if (firstMouse) {
+      lastX = xPos;
+      lastY = yPos;
+      firstMouse = false;
+    }
+
+    float xOffset = xPos - lastX;
+    float yOffset = lastY - yPos;
+
+    lastX = xPos;
+    lastY = yPos;
+
+    if (isCursorHidden)
+      fpsCamera.ProcessMouseMovement(xOffset, yOffset);
+  }
+
 private:
+  void changeCursorState(GLFWwindow *window) {
+
+    double xpos = 0, ypos = 0;
+    if (isCursorHidden) {
+      glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_FALSE);
+      glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+      isCursorHidden = false;
+    } else {
+
+      glfwGetCursorPos(window, &xpos, &ypos);
+
+      if (glfwRawMouseMotionSupported())
+        glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+
+      glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+      isCursorHidden = true;
+    }
+
+    glfwPollEvents();
+    glfwWaitEventsTimeout(0.01);
+    glfwPostEmptyEvent();
+    glfwFocusWindow(window);
+  }
+
   std::vector<glm::vec3> cubePositions = {
       glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
       glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
@@ -116,22 +179,33 @@ private:
       glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
 
   std::vector<float> cubeVertices = {
-      -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  0.5f,  -0.5f,
-      0.5f,  0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f, -0.5f,
+      -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  -1.0f, 0.5f,  -0.5f, -0.5f,
+      0.0f,  0.0f,  -1.0f, 0.5f,  0.5f,  -0.5f, 0.0f,  0.0f,  -1.0f,
+      0.5f,  0.5f,  -0.5f, 0.0f,  0.0f,  -1.0f, -0.5f, 0.5f,  -0.5f,
+      0.0f,  0.0f,  -1.0f, -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  -1.0f,
 
-      -0.5f, -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,  0.5f,
-      0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, -0.5f, 0.5f,
+      -0.5f, -0.5f, 0.5f,  0.0f,  0.0f,  1.0f,  0.5f,  -0.5f, 0.5f,
+      0.0f,  0.0f,  1.0f,  0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+      0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  -0.5f, 0.5f,  0.5f,
+      0.0f,  0.0f,  1.0f,  -0.5f, -0.5f, 0.5f,  0.0f,  0.0f,  1.0f,
 
-      -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f, -0.5f,
-      -0.5f, -0.5f, -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,
+      -0.5f, 0.5f,  0.5f,  -1.0f, 0.0f,  0.0f,  -0.5f, 0.5f,  -0.5f,
+      -1.0f, 0.0f,  0.0f,  -0.5f, -0.5f, -0.5f, -1.0f, 0.0f,  0.0f,
+      -0.5f, -0.5f, -0.5f, -1.0f, 0.0f,  0.0f,  -0.5f, -0.5f, 0.5f,
+      -1.0f, 0.0f,  0.0f,  -0.5f, 0.5f,  0.5f,  -1.0f, 0.0f,  0.0f,
 
-      0.5f,  0.5f,  0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f,
-      0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,  0.5f,
+      0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.5f,  0.5f,  -0.5f,
+      1.0f,  0.0f,  0.0f,  0.5f,  -0.5f, -0.5f, 1.0f,  0.0f,  0.0f,
+      0.5f,  -0.5f, -0.5f, 1.0f,  0.0f,  0.0f,  0.5f,  -0.5f, 0.5f,
+      1.0f,  0.0f,  0.0f,  0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-      -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,
-      0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f,
+      -0.5f, -0.5f, -0.5f, 0.0f,  -1.0f, 0.0f,  0.5f,  -0.5f, -0.5f,
+      0.0f,  -1.0f, 0.0f,  0.5f,  -0.5f, 0.5f,  0.0f,  -1.0f, 0.0f,
+      0.5f,  -0.5f, 0.5f,  0.0f,  -1.0f, 0.0f,  -0.5f, -0.5f, 0.5f,
+      0.0f,  -1.0f, 0.0f,  -0.5f, -0.5f, -0.5f, 0.0f,  -1.0f, 0.0f,
 
-      -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,
-      0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f,
-  };
+      -0.5f, 0.5f,  -0.5f, 0.0f,  1.0f,  0.0f,  0.5f,  0.5f,  -0.5f,
+      0.0f,  1.0f,  0.0f,  0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+      0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  -0.5f, 0.5f,  0.5f,
+      0.0f,  1.0f,  0.0f,  -0.5f, 0.5f,  -0.5f, 0.0f,  1.0f,  0.0f};
 };

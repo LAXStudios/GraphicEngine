@@ -4,6 +4,7 @@
 #include <alloca.h>
 #include <fstream>
 #include <glm/ext/matrix_float4x4.hpp>
+#include <glm/ext/vector_float3.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <sstream>
@@ -138,6 +139,13 @@ void ShaderProgram::setUniformMatrix4fv(const std::string &uniformName,
   // INFO: glm::value_ptr könnte zu &matrix[0][0] geändert werden müssen
   glCall(glUniformMatrix4fv(getUniformLocation(uniformName), 1, GL_FALSE,
                             &matrix[0][0]));
+  this->UnBind();
+}
+
+void ShaderProgram::setUniform3fv(const std::string &uniformName,
+                                  glm::vec3 vector) {
+  this->Bind();
+  glCall(glUniform3fv(getUniformLocation(uniformName), 1, &vector[0]));
   this->UnBind();
 }
 

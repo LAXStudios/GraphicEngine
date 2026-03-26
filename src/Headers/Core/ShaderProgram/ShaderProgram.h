@@ -40,4 +40,5 @@ public:
   void setUniform3f(const std::string &uniformName, float v1, float v2,
                     float v3);
   void setUniformMatrix4fv(const std::string &uniformName, glm::mat4 matrix);
+  void setUniform3fv(const std::string &uniformName, glm::vec3 vector);
 };
