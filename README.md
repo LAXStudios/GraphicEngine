@@ -7,7 +7,7 @@ This is a small little Project for learning Graphics Programming with `OpenGL`, 
 I am not a professional C++ or Graphics developer, nor a CS Student, this is just a hobby project.
 
 # Bugs
-There is currently a Bug in GLFW, which concerns the compatibility with wayland and the mouse its behaviour -> The mouse wont hide when said so, you have to unfocus and refocus the window.
+There is currently a Bug in GLFW, which concerns the compatibility with wayland and the its mouse behaviour. The mouse wont hide when said so, you have to unfocus and refocus the window.
 
 
 # TODOs:
