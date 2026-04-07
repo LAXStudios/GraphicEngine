@@ -10,7 +10,7 @@
 #include <glm/trigonometric.hpp>
 #include <string>
 
-class BasicDirectionalLightScene : public Scene {
+class BasicFlashlightScene : public Scene {
 private:
   ShaderProgram *lightingShaderProgramPtr = nullptr;
 
@@ -35,12 +35,12 @@ private:
   float lastX, lastY;
 
 public:
-  BasicDirectionalLightScene(const std::string &name) : Scene(name) {}
+  BasicFlashlightScene(const std::string &name) : Scene(name) {}
 
   void InitScene(GLFWwindow *window) override {
-    lightingShaderProgramPtr = new ShaderProgram(
-        "/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-        "BasicDirectionalLightScene/Shaders/materialShader.glsl");
+    lightingShaderProgramPtr =
+        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                          "BasicFlashlightScene/Shaders/materialShader.glsl");
     lightingShaderProgramPtr->Bind();
 
     cubeVAOPtr = new VertexArray();
@@ -53,10 +53,10 @@ public:
     vertexBufferPtr->Bind();
 
     texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicDirectionalLightScene/Assets/container2.png");
-    texture01 = new Texture(
-        "/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-        "BasicDirectionalLightScene/Assets/container2_specular.png");
+                          "BasicFlashlightScene/Assets/container2.png");
+    texture01 =
+        new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                    "BasicFlashlightScene/Assets/container2_specular.png");
     texture->Bind();
     lightingShaderProgramPtr->Bind();
     lightingShaderProgramPtr->setUniform1i("material.diffuse", 0);
@@ -90,7 +90,10 @@ public:
 
     lightingShaderProgramPtr->setUniformMatrix4fv("view", view);
     lightingShaderProgramPtr->setUniform3fv("light.position",
-                                            glm::vec3(-0.2f, -1.0f, -0.3f));
+                                            fpsCamera.Position);
+    lightingShaderProgramPtr->setUniform3fv("light.direction", fpsCamera.Front);
+    lightingShaderProgramPtr->setUniform1f("light.cutOff",
+                                           glm::cos(glm::radians(12.5f)));
 
     lightingShaderProgramPtr->setUniform3f("objectColor", 1.0f, 0.5f, 0.3f);
     lightingShaderProgramPtr->setUniform3f("lightColor", 1.0f, 1.0f, 1.0f);

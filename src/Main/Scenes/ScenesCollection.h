@@ -1,5 +1,6 @@
 #include "BasicDiffuseMapScene/BasicDiffuseMapScene.h"
 #include "BasicDirectionalLightScene/BasicDirectionalLightScene.h"
+#include "BasicFlashlightScene/BasicFlashlightScene.h"
 #include "BasicMaterialScene/BasicMaterialScene.h"
 #include "CatCubes3DScene/CatCubes3DScene.h"
 #include "ColorLightingScene/ColorLightingScene.h"

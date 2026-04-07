@@ -32,8 +32,9 @@ struct Material {
 };
 
 struct Light {
-  // vec3 position;
   vec3 position;
+  vec3 position;
+  float cutOff;
 
   vec3 ambient;
   vec3 diffuse;
@@ -60,6 +61,7 @@ in vec3 FragPos;
 
 void main()
 {
+  
   // ambient
   vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
 
