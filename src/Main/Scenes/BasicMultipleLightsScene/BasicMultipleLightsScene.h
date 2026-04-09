@@ -5,14 +5,16 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/vector_float3.hpp>
 #include <iostream>
+#include <vector>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 #include <glm/trigonometric.hpp>
 #include <string>
 
-class BasicFlashlightScene : public Scene {
+class BasicMultipleLightsScene : public Scene {
 private:
   ShaderProgram *lightingShaderProgramPtr = nullptr;
+  ShaderProgram *lampsShaderProgramPtr = nullptr;
 
   VertexArray *cubeVAOPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
@@ -35,13 +37,18 @@ private:
   float lastX, lastY;
 
 public:
-  BasicFlashlightScene(const std::string &name) : Scene(name) {}
+  BasicMultipleLightsScene(const std::string &name) : Scene(name) {}
 
   void InitScene(GLFWwindow *window) override {
-    lightingShaderProgramPtr =
-        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicFlashlightScene/Shaders/flashlightShader.glsl");
+    lightingShaderProgramPtr = new ShaderProgram(
+        "/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+        "BasicMultipleLightsScene/Shaders/multipleLightsShader.glsl");
     lightingShaderProgramPtr->Bind();
+
+    lampsShaderProgramPtr =
+        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                          "BasicMultipleLightsScene/Shaders/cubeShader.glsl");
+    lampsShaderProgramPtr->Bind();
 
     cubeVAOPtr = new VertexArray();
 
@@ -53,10 +60,10 @@ public:
     vertexBufferPtr->Bind();
 
     texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicFlashlightScene/Assets/container2.png");
+                          "BasicMultipleLightsScene/Assets/container2.png");
     texture01 =
         new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                    "BasicFlashlightScene/Assets/container2_specular.png");
+                    "BasicMultipleLightsScene/Assets/container2_specular.png");
     texture->Bind();
     lightingShaderProgramPtr->Bind();
     lightingShaderProgramPtr->setUniform1i("material.diffuse", 0);
@@ -88,29 +95,94 @@ public:
 
     lightingShaderProgramPtr->Bind();
 
-    lightingShaderProgramPtr->setUniformMatrix4fv("view", view);
-    lightingShaderProgramPtr->setUniform3fv("light.position",
-                                            fpsCamera.Position);
-    lightingShaderProgramPtr->setUniform3fv("light.direction", fpsCamera.Front);
-    lightingShaderProgramPtr->setUniform1f("light.cutOff",
-                                           glm::cos(glm::radians(12.5f)));
-
-    lightingShaderProgramPtr->setUniform3f("objectColor", 1.0f, 0.5f, 0.3f);
-    lightingShaderProgramPtr->setUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
-
-    lightingShaderProgramPtr->setUniform1f("material.shininess", 64.0f);
-
-    lightingShaderProgramPtr->setUniform3f("light.ambient", 0.1f, 0.1f, 0.1f);
-    lightingShaderProgramPtr->setUniform3f("light.diffuse", 1.0f, 1.0f, 1.0f);
-    lightingShaderProgramPtr->setUniform3f("light.specular", 1.0f, 1.0f, 1.0f);
-
-    lightingShaderProgramPtr->setUniform1f("light.constant", 1.0f);
-    lightingShaderProgramPtr->setUniform1f("light.linear", 0.09f);
-    lightingShaderProgramPtr->setUniform1f("light.quadratic", 0.032f);
-
-    view = fpsCamera.GetViewMatrix();
-    lightingShaderProgramPtr->setUniformMatrix4fv("projection", proj);
     lightingShaderProgramPtr->setUniform3fv("viewPos", fpsCamera.Position);
+    lightingShaderProgramPtr->setUniform1f("material.shininess", 32.0f);
+
+    // directional light
+    lightingShaderProgramPtr->setUniform3f("dirLight.direction", -0.2f, -1.0f,
+                                           -0.3f);
+    lightingShaderProgramPtr->setUniform3f("dirLight.ambient", 0.05f, 0.05,
+                                           0.05f);
+    lightingShaderProgramPtr->setUniform3f("dirLight.diffuse", 0.4f, 0.4f,
+                                           0.4f);
+    lightingShaderProgramPtr->setUniform3f("dirLight.specular", 0.5f, 0.5f,
+                                           0.5f);
+
+    // point light 1
+    lightingShaderProgramPtr->setUniform3fv("pointLights[0].position",
+                                            pointLightPositions[0]);
+    lightingShaderProgramPtr->setUniform3f("pointLights[0].ambient", 0.05f,
+                                           0.05f, 0.05f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[0].diffuse", 0.8f, 0.8f,
+                                           0.8f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[0].specular", 1.0f,
+                                           1.0f, 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[0].constant", 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[0].linear", 0.09f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[0].quadratic", 0.032f);
+    // point light 2
+    lightingShaderProgramPtr->setUniform3fv("pointLights[1].position",
+                                            pointLightPositions[1]);
+    lightingShaderProgramPtr->setUniform3f("pointLights[1].ambient", 0.05f,
+                                           0.05f, 0.05f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[1].diffuse", 0.8f, 0.8f,
+                                           0.8f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[1].specular", 1.0f,
+                                           1.0f, 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[1].constant", 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[1].linear", 0.09f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[1].quadratic", 0.032f);
+    // point light 3
+    lightingShaderProgramPtr->setUniform3fv("pointLights[2].position",
+                                            pointLightPositions[2]);
+    lightingShaderProgramPtr->setUniform3f("pointLights[2].ambient", 0.05f,
+                                           0.05f, 0.05f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[2].diffuse", 0.8f, 0.8f,
+                                           0.8f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[2].specular", 1.0f,
+                                           1.0f, 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[2].constant", 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[2].linear", 0.09f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[2].quadratic", 0.032f);
+    // point light 4
+    lightingShaderProgramPtr->setUniform3fv("pointLights[3].position",
+                                            pointLightPositions[3]);
+    lightingShaderProgramPtr->setUniform3f("pointLights[3].ambient", 0.05f,
+                                           0.05f, 0.05f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[3].diffuse", 0.8f, 0.8f,
+                                           0.8f);
+    lightingShaderProgramPtr->setUniform3f("pointLights[3].specular", 1.0f,
+                                           1.0f, 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[3].constant", 1.0f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[3].linear", 0.09f);
+    lightingShaderProgramPtr->setUniform1f("pointLights[3].quadratic", 0.032f);
+
+    // spotlight
+    lightingShaderProgramPtr->setUniform3fv("spotlight.position",
+                                            fpsCamera.Position);
+    lightingShaderProgramPtr->setUniform3fv("spotlight.direction",
+                                            fpsCamera.Front);
+    lightingShaderProgramPtr->setUniform3f("spotlight.ambient", 0.0f, 0.0f,
+                                           0.0f);
+    lightingShaderProgramPtr->setUniform3f("spotlight.diffuse", 1.0f, 1.0f,
+                                           1.0f);
+    lightingShaderProgramPtr->setUniform3f("spotlight.specular", 1.0f, 1.0f,
+                                           1.0f);
+    lightingShaderProgramPtr->setUniform1f("spotlight.constant", 1.0f);
+    lightingShaderProgramPtr->setUniform1f("spotlight.linear", 0.09f);
+    lightingShaderProgramPtr->setUniform1f("spotlight.quadratic", 0.032f);
+    lightingShaderProgramPtr->setUniform1f("spotlight.cutOff",
+                                           glm::cos(glm::radians(12.5f)));
+    lightingShaderProgramPtr->setUniform1f("spotlight.outerCutOff",
+                                           glm::cos(glm::radians(15.0f)));
+
+    // view projection
+    glm::mat4 view = fpsCamera.GetViewMatrix();
+    lightingShaderProgramPtr->setUniformMatrix4fv("projection", proj);
+    lightingShaderProgramPtr->setUniformMatrix4fv("view", view);
+
+    glm::mat4 model = glm::mat4(1.0f);
+    lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
 
     texture->Bind(0);
     texture01->Bind(1);
@@ -125,6 +197,19 @@ public:
       lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
 
       renderer.draw(*cubeVAOPtr, *lightingShaderProgramPtr, 36);
+    }
+
+    lampsShaderProgramPtr->Bind();
+    lampsShaderProgramPtr->setUniformMatrix4fv("projection", proj);
+    lampsShaderProgramPtr->setUniformMatrix4fv("view", view);
+
+    for (unsigned int i = 0; i < 4; i++) {
+      model = glm::mat4(1.0f);
+      model = glm::translate(model, pointLightPositions[i]);
+      model = glm::scale(model, glm::vec3(0.2f));
+      lampsShaderProgramPtr->setUniformMatrix4fv("model", model);
+
+      renderer.draw(*cubeVAOPtr, *lampsShaderProgramPtr, 36);
     }
   }
 
@@ -214,6 +299,9 @@ private:
     glfwPostEmptyEvent();
     glfwFocusWindow(window);
   }
+  std::vector<glm::vec3> pointLightPositions = {
+      glm::vec3(0.7f, 0.2f, 2.0f), glm::vec3(2.3f, -3.3f, -4.0f),
+      glm::vec3(-4.0f, 2.0f, -12.0f), glm::vec3(0.0f, 0.0f, -3.0f)};
 
   std::vector<glm::vec3> cubePositions = {
       glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
