@@ -31,6 +31,7 @@ pkg_check_modules(GLFW REQUIRED glfw3)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(assimp REQUIRED CONFIG)
 
 add_library(SOIL STATIC IMPORTED)
 set_target_properties(SOIL PROPERTIES 
@@ -44,8 +45,9 @@ target_link_libraries(${PROJECT_NAME}
     ${GLFW_LIBRARIES}
     OpenGL::GL
     GLEW::GLEW
-    SOIL
+    # SOIL
     glm::glm
+    assimp::assimp
 )
 
 target_link_directories(${PROJECT_NAME} PRIVATE

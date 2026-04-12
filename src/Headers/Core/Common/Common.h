@@ -11,7 +11,7 @@
 #include "../VertexBufferLayout/VertexBufferLayout.h"
 #define NOTHING
 #include "../ShaderProgram/ShaderProgram.h"
-#include "../Texture/Texture.h"
+// #include "../Texture/Texture.h"
 #include "../VertexArray/VertexArray.h"
 #define NOTHING
 #include "../../../Headers/Core/Camera/FPSCamera.h"

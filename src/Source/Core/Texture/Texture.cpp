@@ -1,11 +1,11 @@
 #include "../../../Headers/Core/Texture/Texture.h"
-#include "../../../../extern/soil/SOIL.h"
 #include "../../../Headers/Core/Common/ErrorHandling.h"
 #include <GL/gl.h>
 
 Texture::Texture(const std::string &filePath)
     : filePath(filePath), imageBuffer(nullptr), width(0), height(0) {
 
+  /*
   imageBuffer =
       SOIL_load_image(filePath.c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
 
@@ -26,6 +26,7 @@ Texture::Texture(const std::string &filePath)
 
   if (imageBuffer)
     SOIL_free_image_data(imageBuffer);
+  */
 }
 
 Texture::~Texture() { glCall(glDeleteTextures(1, &ID)); }

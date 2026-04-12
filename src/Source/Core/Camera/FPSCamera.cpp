@@ -4,6 +4,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <iostream>
 
 FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     : Front(glm::vec3(0.0f, 0.0f, 0.0f)), MovementSpeed(SPEED),
@@ -40,10 +41,15 @@ void FPSCamera::ProcessKeyboard(CameraMovement direction, float deltaTime) {
     Position += Right * velocity;
   if (direction == LEFT)
     Position -= Right * velocity;
+
+  std::cout << "velocity: " << velocity << std::endl;
 }
 
 void FPSCamera::ProcessMouseMovement(float xOffset, float yOffset,
                                      bool constantPitch) {
+
+  std::cout << "Mouse Movement\n";
+
   xOffset *= MouseSensitivity;
   yOffset *= MouseSensitivity;
 
