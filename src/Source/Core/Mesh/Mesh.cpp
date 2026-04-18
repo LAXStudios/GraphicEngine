@@ -1,6 +1,7 @@
 #include "../../../Headers/Core/Mesh/Mesh.h"
 #include "../../../Headers/Core/Common/ErrorHandling.h"
 #include <GL/gl.h>
+#include <GLFW/glfw3.h>
 #include <cstddef>
 #include <iostream>
 #include <string>
@@ -11,14 +12,12 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
   this->indices = indices;
   this->textures = texture;
 
-  std::cout << "DEBUG: Mesh Constructor started" << std::endl;
-
   setupMesh();
 }
 
 void Mesh::Draw(ShaderProgram &shaderProgram) {
 
-  // std::cout << "Mesh::Draw\n";
+  std::cout << "Mesh::Draw\n";
 
   if (indices.empty()) {
     std::cout << "Mesh::Draw indices empty\n";
@@ -30,13 +29,21 @@ void Mesh::Draw(ShaderProgram &shaderProgram) {
     return;
   }
 
+  std::cout << "Mesh::Draw -> Current Textures of the model: \n";
+  for (auto texture : textures) {
+    std::cout << "ID: " << texture.id << " | Path: " << texture.path
+              << " | Type: " << texture.type << std::endl;
+  }
+
   unsigned int diffuseNr = 1;
   unsigned int specularNr = 1;
   unsigned int normalNr = 1;
   unsigned int heightNr = 1;
 
   for (unsigned int i = 0; i < textures.size(); i++) {
-    glCall(glActiveTexture(GL_TEXTURE0 + i));
+    std::cout << "Mesh::Draw -> Current context: " << glfwGetCurrentContext()
+              << std::endl;
+    glCall(glActiveTexture(GL_TEXTURE0 + textures[i].id));
 
     std::string number;
     std::string name = textures[i].type;
@@ -50,14 +57,32 @@ void Mesh::Draw(ShaderProgram &shaderProgram) {
     else if (name == "texture_height")
       number = std::to_string(heightNr++);
 
-    glCall(glUniform1i(
-        glGetUniformLocation(shaderProgram.GetID(), (name + number).c_str()),
-        i));
+    std::cout << "Mesh::Draw -> current Texture ID: " << textures[i].id << " | "
+              << textures[i].path << " | " << textures[i].type << std::endl;
 
-    // shaderProgram.setUniform1i(shaderProgram.GetID(), (name +
-    // number).c_str()), i);
+    if (glIsTexture(textures[i].id) == GL_FALSE) {
+      std::cout << "Mesh::Draw -> Texture with ID: { " << textures[i].id
+                << " } does not exist in OpenGL | glIsTexture returned GL_FALSE"
+                << std::endl;
+
+      // break;
+    }
+
+    shaderProgram.setUniform1i((name + number).c_str(), i);
+
+    std::cout << "Trying to bind: " << textures[i].id << " | "
+              << textures[i].type << " | " << textures[i].path << std::endl;
+
+    int whichID;
+    glCall(glGetIntegerv(GL_TEXTURE_BINDING_2D, &whichID));
+    std::cout
+        << "Mesh::Draw -> Current ID of binded Texture: " << whichID
+        << ". If 0, then there are no binded Textures in OpenGL context\n";
+
     glCall(glBindTexture(GL_TEXTURE_2D, textures[i].id));
   }
+
+  std::cout << "Mesh::Draw -> draw mesh\n";
 
   // draw mesh
   glCall(glBindVertexArray(VAO));

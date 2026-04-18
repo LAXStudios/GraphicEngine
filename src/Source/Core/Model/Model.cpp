@@ -3,6 +3,7 @@
 #include <ostream>
 #define STB_IMAGE_IMPLEMENTATION
 #include "../../../../extern/stb/stb_image.h"
+#include <GLFW/glfw3.h>
 
 Model::Model(const std::string &path) { loadModel(path); }
 
@@ -12,12 +13,15 @@ void Model::Draw(ShaderProgram &shaderProgram) {
     std::cerr << "Warining: No meshes\n";
     return;
   }
+  std::cout << "Model::Draw -> Current Context: " << glfwGetCurrentContext()
+            << std::endl;
   for (unsigned int i = 0; i < meshes.size(); i++)
     meshes[i].Draw(shaderProgram);
 }
 
 void Model::loadModel(std::string const &path) {
   std::cout << "Model::loadModel\n";
+
   Assimp::Importer importer;
   const aiScene *scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
@@ -57,12 +61,11 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
       break;
     }
     Vertex vertex;
-    glm::vec3 vector;
 
+    glm::vec3 vector;
     vector.x = mesh->mVertices[i].x;
     vector.y = mesh->mVertices[i].y;
     vector.z = mesh->mVertices[i].z;
-
     vertex.Position = vector;
 
     if (mesh->HasNormals()) {
@@ -100,28 +103,23 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
       indices.push_back(face.mIndices[j]);
   }
 
-  std::cout << "Model::processMesh -> vertices: " << vertices.data()
-            << std::endl;
-
   aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
 
   std::vector<Texture> diffuseMaps =
       loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
-  std::cout << "Model::processMesh -> got diffuse texture\n";
+  textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
   std::vector<Texture> specularMaps = loadMaterialTextures(
       material, aiTextureType_SPECULAR, "texture_specular");
-  std::cout << "Model::processMesh -> got specular texture\n";
+  textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
   std::vector<Texture> normalMaps =
       loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
-  std::cout << "Model::processMesh -> got normal texture\n";
+  textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
   std::vector<Texture> heightMaps =
       loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
-  std::cout << "Model::processMesh -> got height texture\n";
-
-  std::cout << "Model::processMesh -> loaded textures\n";
+  textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
   return Mesh(vertices, indices, textures);
 }
@@ -133,7 +131,6 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *material,
   std::vector<Texture> textures;
   for (unsigned int i = 0; i < material->GetTextureCount(type); i++) {
     aiString str;
-
     material->GetTexture(type, i, &str);
 
     bool skip = false;
@@ -145,8 +142,6 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *material,
       }
     }
 
-    std::cout << "Model::loadMaterialTextures -> got textures\n";
-
     if (!skip) {
       Texture texture;
       texture.id = textureFromFile(str.C_Str(), this->directory);
@@ -154,14 +149,19 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *material,
       texture.path = str.C_Str();
       textures.push_back(texture);
       texturesLoaded.push_back(texture);
+      std::cout << "Model::loadMaterialTextures -> texture added to textures: "
+                << texture.id << " | " << texture.path << std::endl;
     }
-
-    std::cout
-        << "Model::loadMaterialTextures -> setted texture and will return\n";
   }
 
   if (textures.empty()) {
     std::cout << "Model::loadMaterialTextures texture empty\n";
+  }
+
+  std::cout << "Model::loadMaterialTextures textures:\n";
+  for (auto texture : textures) {
+    std::cout << "ID: " << texture.id << " | Type: " << texture.type
+              << " | Path: " << texture.path << std::endl;
   }
 
   return textures;
@@ -169,24 +169,22 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *material,
 
 unsigned int Model::textureFromFile(const char *path,
                                     const std::string &directory) {
-  std::cout << "Model::textureFromFile start\n";
+  std::cout << "Model::textureFromFile\n";
 
   std::string filename = std::string(path);
   filename = directory + '/' + filename;
   std::cout << "Model::textureFromFile filename: " << filename << std::endl;
 
-  unsigned int textureId;
+  unsigned int textureId = 0;
   glCall(glGenTextures(1, &textureId));
 
+  std::cout << "Model::textureFromFile Created ID: " << textureId << std::endl;
+
   int width, height, nrComponents;
-  // unsigned char *data =
-  // SOIL_load_image(filename.c_str(), &width, &height, 0, SOIL_LOAD_AUTO);
+  stbi_set_flip_vertically_on_load(true);
 
   unsigned char *data =
       stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
-
-  if (!data)
-    std::cout << "data empty\n";
 
   if (data) {
     GLenum format;
@@ -198,20 +196,36 @@ unsigned int Model::textureFromFile(const char *path,
       format = GL_RGBA;
 
     glCall(glBindTexture(GL_TEXTURE_2D, textureId));
+
+    GLint boundTexture = 0;
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &boundTexture);
+    if (boundTexture != (GLint)textureId) {
+      std::cerr << "Failed to bind texture ID: " << textureId << std::endl;
+      stbi_image_free(data);
+      return 0;
+    } else {
+      std::cout << "Model::textureFromFile -> Current texture was created as a "
+                   "OpenGL texture Object\n";
+    }
+
     glCall(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
-                        GL_UNSIGNED_INT, data));
+                        GL_UNSIGNED_BYTE, data));
 
     glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
     glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
-    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                           GL_LINEAR_MIPMAP_LINEAR));
     glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
     stbi_image_free(data);
-
   } else {
-    std::cout << "Texure fgailed to load at path: " << path << std::endl;
+    std::cout << "Texture failed to load at path: " << path << std::endl;
     stbi_image_free(data);
   }
+
+  if (glIsTexture(textureId) == GL_TRUE)
+    std::cout << "Model::textureFromFile -> Texture exits according to "
+                 "glIsTexture()\n";
 
   return textureId;
 }

@@ -121,9 +121,9 @@ unsigned int ShaderProgram::getUniformLocation(const std::string &uniformName) {
 }
 
 void ShaderProgram::setUniform1i(const std::string &uniformName, int value) {
-  // this->Bind();
+  this->Bind();
   glCall(glUniform1i(getUniformLocation(uniformName), value));
-  // this->UnBind();
+  this->UnBind();
 }
 
 void ShaderProgram::setUniform1f(const std::string &uniformName, float value) {

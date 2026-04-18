@@ -1,0 +1,1842 @@
+
+    ~/Coding/GraphicEngine/build    model-loading !2  make
+❯ make
+[  4%] Building CXX object CMakeFiles/GraphicEngine.dir/src/Source/Core/Mesh/Mesh.cpp.o
+[  9%] Linking CXX executable GraphicEngine
+[100%] Built target GraphicEngine
+❯ ./GraphicEngine
+Main Thread: 140170711567424
+GLFW Version: 3.4
+ShaderProgram ID: 1
+Model::loadModel
+Model::processNode
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::textureFromFile start
+Model::textureFromFile filename: /home/lax/Coding/GraphicEngine/src/Main/Scenes/ModelLoadingScene/Assets/backpack/diffuse.jpg
+Model::textureFromFile -> created texture id: 1
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::textureFromFile start
+Model::textureFromFile filename: /home/lax/Coding/GraphicEngine/src/Main/Scenes/ModelLoadingScene/Assets/backpack/specular.jpg
+Model::textureFromFile -> created texture id: 1
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::textureFromFile start
+Model::textureFromFile filename: /home/lax/Coding/GraphicEngine/src/Main/Scenes/ModelLoadingScene/Assets/backpack/normal.png
+Model::textureFromFile -> created texture id: 1
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 1 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operati
+ons.
+[GL DEBUG] Buffer detailed info: Buffer object 2 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object
+ operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 3 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operati
+ons.
+[GL DEBUG] Buffer detailed info: Buffer object 4 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object
+ operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 5 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operati
+ons.
+[GL DEBUG] Buffer detailed info: Buffer object 6 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object
+ operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 7 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operati
+ons.
+[GL DEBUG] Buffer detailed info: Buffer object 8 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object
+ operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 9 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operati
+ons.
+[GL DEBUG] Buffer detailed info: Buffer object 10 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 11 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 12 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 13 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 14 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 15 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 16 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 17 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 18 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 19 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 21 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 22 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 23 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 24 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 25 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 26 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 27 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 28 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 29 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 30 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 31 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 32 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 33 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 34 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 35 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 36 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 37 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 38 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 39 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 40 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 41 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 42 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 43 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 44 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 45 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 46 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 47 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 48 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 49 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 50 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 51 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 52 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 53 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 54 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 55 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 56 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 57 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 58 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 59 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 60 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 61 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 62 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 63 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 64 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 65 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 66 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 67 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 68 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 69 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 70 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 71 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 72 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 73 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 74 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 75 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 76 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 77 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 78 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 79 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 80 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 81 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 82 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 83 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 84 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 85 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 86 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 87 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 88 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 89 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 90 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 91 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 92 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 93 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 94 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 95 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 96 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 97 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 98 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer objec
+t operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 99 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operat
+ions.
+[GL DEBUG] Buffer detailed info: Buffer object 100 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 101 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 102 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 103 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 104 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 105 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 106 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 107 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 108 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 109 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 110 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 111 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 112 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 113 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 114 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 115 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 116 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 117 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 118 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 119 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 120 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 121 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 122 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 123 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 124 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 125 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 126 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 127 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 128 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 129 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 130 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 131 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 132 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 133 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 134 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 135 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 136 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 137 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 138 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 139 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 140 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 141 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 142 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 143 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 144 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 145 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 146 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 147 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 148 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 149 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 150 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 151 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 152 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 153 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 154 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 155 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 156 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+Model::processNode
+Model::processMesh
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | diffuse.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got diffuse texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | specular.jpg
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got specular texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures -> texture added to textures: 1 | normal.png
+Model::loadMaterialTextures -> setted texture and will return
+Model::processMesh -> got normal texture
+Model::loadMaterialTextures
+Model::loadMaterialTextures texture empty
+Model::processMesh -> got height texture
+Model::processMesh -> loaded textures
+DEBUG: Mesh Constructor started
+[GL DEBUG] Buffer detailed info: Buffer object 157 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object opera
+tions.
+[GL DEBUG] Buffer detailed info: Buffer object 158 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer obje
+ct operations.
+4.09782e-07
+Mesh::Draw -> current Texture ID: 1 | diffuse.jpg | texture_diffuse
+[GL DEBUG] GL_INVALID_OPERATION error generated. Texture name does not refer to a texture object generated by OpenGL.
+OpenGL ERROR: 1282 in function glBindTexture(GL_TEXTURE_2D, textures[i].id) at /home/lax/Coding/GraphicEngine/src/Source/Core/Mesh/Mesh.cpp:63
+[1]    9240 trace trap (core dumped)  ./GraphicEngine
+
+    ~/Coding/GraphicEngine/build    model-loading !2 

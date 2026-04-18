@@ -3,10 +3,12 @@
 #include "../../../Headers/Core/ShaderProgram/ShaderProgram.h"
 #include "../../../Headers/Scene/Scene.h"
 #include <GL/gl.h>
+#include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
+#include <thread>
 
 class ModelLoadingScene : public Scene {
 private:
@@ -29,6 +31,14 @@ public:
   ModelLoadingScene(const std::string &name) : Scene(name) {}
 
   void InitScene(GLFWwindow *window) override {
+
+    glfwMakeContextCurrent(window);
+
+    std::cout << "ModelLoadingScene::InitScene -> Main thread ID: "
+              << std::this_thread::get_id() << std::endl;
+    std::cout << "ModelLoadingScene::InitScene -> Current context:"
+              << glfwGetCurrentContext() << std::endl;
+
     shaderProgramPtr =
         new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
                           "ModelLoadingScene/Shader/basic.glsl");
@@ -47,15 +57,15 @@ public:
 
   void Render() override {
 
+    std::cout
+        << "ModelLoadingScene::Render -> Current context before rendering:"
+        << glfwGetCurrentContext() << std::endl;
+
     glDisable(GL_CULL_FACE);
 
     shaderProgramPtr->Bind();
 
-    // proj = glm::perspective(glm::radians(camera.Zoom), 1280.0f / 800.0f,
-    // 0.1f, 100.f);
     view = camera.GetViewMatrix();
-
-    // shaderProgramPtr->setUniformMatrix4fv("projection", proj);
     shaderProgramPtr->setUniformMatrix4fv("view", view);
 
     glm::mat4 model = glm::mat4(1.0f);
