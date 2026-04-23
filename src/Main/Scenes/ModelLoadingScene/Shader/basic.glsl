@@ -12,7 +12,10 @@ uniform mat4 projection;
 
 void main()
 {
-  gl_Position = projection * view * model * vec4(aPos, 1.0);
+  vec4 worldPos = model * vec4(aPos, 1.0);
+  vec4 viewPos = view * worldPos;
+  gl_Position = projection * viewPos;
+  // gl_Position = projection * view * model * vec4(aPos, 1.0);
   TexCoords = aTexCoords;
 }
 
@@ -23,8 +26,6 @@ out vec4 FragColor;
 in vec2 TexCoords;
 
 uniform sampler2D texture_diffuse1;
-uniform sampler2D texture_specular1;
-uniform sampler2D texture_normal1;
 
 void main()
 {

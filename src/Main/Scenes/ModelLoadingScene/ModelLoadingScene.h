@@ -8,17 +8,18 @@
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
+#include <memory>
 #include <thread>
 
 class ModelLoadingScene : public Scene {
 private:
-  ShaderProgram *shaderProgramPtr = nullptr;
+  std::unique_ptr<ShaderProgram> shaderProgramPtr = nullptr;
   Model *myModel = nullptr;
 
   glm::mat4 view;
   glm::mat4 proj;
 
-  float deltaTime;
+  float deltaTime, aspectRatio;
 
   bool firstMouse = true;
   bool isCursorHidden = false;
@@ -39,9 +40,9 @@ public:
     std::cout << "ModelLoadingScene::InitScene -> Current context:"
               << glfwGetCurrentContext() << std::endl;
 
-    shaderProgramPtr =
-        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "ModelLoadingScene/Shader/basic.glsl");
+    shaderProgramPtr = std::make_unique<ShaderProgram>(
+        "/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+        "ModelLoadingScene/Shader/basic.glsl");
     shaderProgramPtr->Bind();
 
     myModel = new Model("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
@@ -56,17 +57,21 @@ public:
   }
 
   void Render() override {
-
-    std::cout
-        << "ModelLoadingScene::Render -> Current context before rendering:"
-        << glfwGetCurrentContext() << std::endl;
-
     glDisable(GL_CULL_FACE);
 
     shaderProgramPtr->Bind();
 
-    view = camera.GetViewMatrix();
+    glm::mat4 view = camera.GetViewMatrix();
     shaderProgramPtr->setUniformMatrix4fv("view", view);
+
+    std::cout << "RENDER: View[0][3] = " << view[0][3]
+              << ", View[1][3] = " << view[1][3]
+              << ", View[2][3] = " << view[2][3] << std::endl;
+
+    proj =
+        glm::perspective(glm::radians(camera.Zoom), aspectRatio, 0.1f, 100.0f);
+
+    shaderProgramPtr->setUniformMatrix4fv("projection", proj);
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
@@ -76,14 +81,13 @@ public:
     myModel->Draw(*shaderProgramPtr);
   }
 
-  void Update(float dt) override {
-    deltaTime = dt;
-    std::cout << deltaTime << std::endl;
-  }
+  void Update(float dt) override { deltaTime = dt; }
 
   void OnResize(float aspectRatio) override {
-    proj = glm::perspective(glm::radians(camera.Zoom), 1280.0f / 800.0f, 0.1f,
-                            100.0f);
+    this->aspectRatio = aspectRatio;
+
+    proj =
+        glm::perspective(glm::radians(camera.Zoom), aspectRatio, 0.1f, 100.0f);
     shaderProgramPtr->setUniformMatrix4fv("projection", proj);
   }
 

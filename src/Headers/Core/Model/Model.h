@@ -1,34 +1,36 @@
-#include "../../../../extern/soil/SOIL.h"
-#include "../Common/ErrorHandling.h"
-#include "../Mesh/Mesh.h"
-#include "../ShaderProgram/ShaderProgram.h"
+#pragma once
+
+#include "../Common/Common.h"
 #include <assimp/Importer.hpp>
-#include <assimp/material.h>
-#include <assimp/mesh.h>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
-#include <assimp/types.h>
-#include <iostream>
-#include <string>
-#include <vector>
+
+class ShaderProgram;
 
 class Model {
-public:
-  Model(const std::string &path);
-  void Draw(ShaderProgram &ShaderProgram);
-
 private:
-  std::vector<Texture> texturesLoaded;
   std::vector<Mesh> meshes;
-
   std::string directory;
 
-  void loadModel(std::string const &path);
+  void loadModel(const std::string &path);
   void processNode(aiNode *node, const aiScene *scene);
   Mesh processMesh(aiMesh *mesh, const aiScene *scene);
   std::vector<Texture> loadMaterialTextures(aiMaterial *material,
                                             aiTextureType type,
                                             std::string typeName);
 
-  unsigned int textureFromFile(const char *path, const std::string &directory);
+public:
+  Model(const std::string &path);
+
+  // Nicht Kopierbar, um double free zu verhindern
+  Model(const Model &) = delete;
+  Model &operator=(const Model &) = delete;
+
+  // move erlaubt
+  Model(Model &&) = default;
+  Model &operator=(Model &&) = default;
+
+  ~Model() = default;
+
+  void Draw(ShaderProgram &shaderProgram);
 };

@@ -1,5 +1,22 @@
 #pragma once
+#include <cstdint>
+#include <memory>
+#include <string>
+#include <vector>
 
+class Texture {
+public:
+  uint32_t textureHandle;
+  std::string path;
+  std::string type;
+
+  Texture() : textureHandle(0) {}
+  Texture(uint32_t handle, std::string path, std::string type)
+      : textureHandle(handle), path(std::move(path)), type(std::move(type)) {}
+};
+
+// Old Texture
+/*
 #include <string>
 
 class Texture {
@@ -24,3 +41,5 @@ public:
   inline int GetWidth() const { return width; }
   inline int GetHeight() const { return height; }
 };
+
+*/

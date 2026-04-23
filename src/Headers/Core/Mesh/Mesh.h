@@ -1,15 +1,10 @@
-#include <GL/glew.h>
+#pragma once
 
-#include <glm/ext/vector_float3.hpp>
+#include "../Common/Common.h"
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include <memory>
 #include <string>
 #include <vector>
-
-#include "../ShaderProgram/ShaderProgram.h"
-
-#define MAX_BONE_INFLUENCE 4
 
 struct Vertex {
   glm::vec3 Position;
@@ -17,28 +12,43 @@ struct Vertex {
   glm::vec2 TexCoords;
   glm::vec3 Tangent;
   glm::vec3 BiTangent;
-  int mBoneIDs[MAX_BONE_INFLUENCE];
-  float mWeights[MAX_BONE_INFLUENCE];
+  int mBoneIDs[4];
+  glm::vec4 mWeights;
 };
 
-struct Texture {
-  unsigned int id;
-  std::string type;
-  std::string path;
-};
+class ShaderProgram;
 
 class Mesh {
-public:
+private:
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<Texture> textures;
 
-  Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
-       std::vector<Texture> texture);
-  void Draw(ShaderProgram &shader);
+  // Lokale GPU-Ressourcen (gehören nur diesem Mesh!)
+  GLuint VAO = 0;
+  GLuint VBO = 0;
+  GLuint EBO = 0;
 
-private:
-  unsigned int VAO, VBO, EBO;
+  bool buffersInitialized = false;
 
   void setupMesh();
+  void cleanupMesh();
+
+public:
+  Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
+       std::vector<Texture> textures);
+
+  // Nicht kopierbar wegen diesem RAII verfahren
+  Mesh(const Mesh &) = delete;
+  Mesh &operator=(const Mesh &) = delete;
+
+  // Man darf es moven, weil Ro5
+  Mesh(Mesh &&other) noexcept;
+  Mesh &operator=(Mesh &&other) noexcept;
+
+  ~Mesh();
+
+  void Draw(ShaderProgram &shaderProgram);
+
+  const std::vector<Texture> &GetTextures() const { return textures; }
 };

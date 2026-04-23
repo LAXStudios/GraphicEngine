@@ -18,13 +18,61 @@
 #include <thread>
 #include <vector>
 
+// #define STB_IMAGE_IMPLEMENTATION
+#include "../../../../extern/stb/stb_image.h"
+
+class lTexture {
+private:
+  unsigned int ID;
+  std::string filePath;
+  unsigned char *data;
+
+  int width, height;
+
+public:
+  lTexture(const std::string &filePath)
+      : filePath(filePath), data(nullptr), width(0), height(0) {
+    stbi_set_flip_vertically_on_load(true);
+
+    int nrComponents = 0;
+    unsigned char *data =
+        stbi_load(filePath.c_str(), &width, &height, &nrComponents, 0);
+
+    glCall(glGenTextures(1, &ID));
+    glCall(glBindTexture(GL_TEXTURE_2D, ID));
+
+    if (!data)
+      std::cout << "Error while Texture gen\n";
+
+    glCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
+                        GL_UNSIGNED_BYTE, data));
+    glCall(glGenerateMipmap(GL_TEXTURE_2D));
+
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+  }
+
+  ~lTexture() { glCall(glDeleteTextures(1, &ID)); }
+
+  unsigned int GetID() const { return ID; }
+
+  void Bind(unsigned int slot) const {
+    glCall(glActiveTexture(GL_TEXTURE0 + slot));
+    glCall(glBindTexture(GL_TEXTURE_2D, ID));
+  }
+
+  void UnBind() const { glCall(glBindTexture(GL_TEXTURE_2D, 0)); }
+};
+
 class MovementScene : public Scene {
 private:
   ShaderProgram *shaderProgramPtr = nullptr;
 
   VertexArray *vertexArrayPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
-  Texture *texture = nullptr;
+  lTexture *texture = nullptr;
 
   // glm::mat4 model;
   glm::mat4 view;
@@ -69,9 +117,9 @@ public:
     vertexArrayPtr->UnBind();
     vertexBufferPtr->UnBind();
 
-    texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "MovementScene/Assets/soka_blue_cutie.png");
-    texture->Bind();
+    texture = new lTexture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                           "MovementScene/Assets/soka_blue_cutie.png");
+    texture->Bind(1);
 
     shaderProgramPtr->Bind();
     shaderProgramPtr->setUniform1i("texture0", 0);
@@ -167,6 +215,10 @@ public:
 
     shaderProgramPtr->setUniformMatrix4fv("view", view);
 
+    std::cout << "RENDER: View[0][3] = " << view[0][3]
+              << ", View[1][3] = " << view[1][3]
+              << ", View[2][3] = " << view[2][3] << std::endl;
+
     for (unsigned int i = 0; i < 10; i++) {
       glm::mat4 model = glm::mat4(1.0f);
       model = glm::translate(model, cubePositions[i]);
@@ -176,7 +228,7 @@ public:
       shaderProgramPtr->Bind();
       shaderProgramPtr->setUniformMatrix4fv("model", model);
 
-      texture->Bind();
+      texture->Bind(1);
       renderer.draw(*vertexArrayPtr, *shaderProgramPtr, 36);
     }
   }
