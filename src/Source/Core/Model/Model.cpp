@@ -1,4 +1,5 @@
 #include "../../../Headers/Core/Model/Model.h"
+#include <GL/gl.h>
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>

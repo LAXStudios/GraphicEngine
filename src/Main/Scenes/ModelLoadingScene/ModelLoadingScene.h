@@ -7,6 +7,7 @@
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/trigonometric.hpp>
 #include <memory>
 #include <thread>
@@ -57,16 +58,22 @@ public:
   }
 
   void Render() override {
+
     glDisable(GL_CULL_FACE);
 
     shaderProgramPtr->Bind();
 
-    glm::mat4 view = camera.GetViewMatrix();
-    shaderProgramPtr->setUniformMatrix4fv("view", view);
+    // Was ist die tatsächliche ID?
+    std::cout << "ShaderProgram ID: " << shaderProgramPtr->GetID() << std::endl;
 
-    std::cout << "RENDER: View[0][3] = " << view[0][3]
-              << ", View[1][3] = " << view[1][3]
-              << ", View[2][3] = " << view[2][3] << std::endl;
+    // Welches Programm ist gerade aktiv in OpenGL?
+    GLint currentProgram;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
+    std::cout << "GL_CURRENT_PROGRAM: " << currentProgram << std::endl;
+
+    glm::mat4 view = camera.GetViewMatrix();
+
+    shaderProgramPtr->setUniformMatrix4fv("view", view);
 
     proj =
         glm::perspective(glm::radians(camera.Zoom), aspectRatio, 0.1f, 100.0f);

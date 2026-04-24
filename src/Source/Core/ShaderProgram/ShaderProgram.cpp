@@ -123,20 +123,17 @@ unsigned int ShaderProgram::getUniformLocation(const std::string &uniformName) {
 void ShaderProgram::setUniform1i(const std::string &uniformName, int value) {
   this->Bind();
   glCall(glUniform1i(getUniformLocation(uniformName), value));
-  this->UnBind();
 }
 
 void ShaderProgram::setUniform1f(const std::string &uniformName, float value) {
   this->Bind();
   glCall(glUniform1f(getUniformLocation(uniformName), value));
-  this->UnBind();
 }
 
 void ShaderProgram::setUniform3f(const std::string &uniformName, float v1,
                                  float v2, float v3) {
   this->Bind();
   glCall(glUniform3f(getUniformLocation(uniformName), v1, v2, v3));
-  this->UnBind();
 }
 
 void ShaderProgram::setUniformMatrix4fv(const std::string &uniformName,
@@ -145,14 +142,13 @@ void ShaderProgram::setUniformMatrix4fv(const std::string &uniformName,
   // INFO: glm::value_ptr könnte zu &matrix[0][0] geändert werden müssen
   glCall(glUniformMatrix4fv(getUniformLocation(uniformName), 1, GL_FALSE,
                             &matrix[0][0]));
-  this->UnBind();
+  // this->UnBind();
 }
 
 void ShaderProgram::setUniform3fv(const std::string &uniformName,
                                   glm::vec3 vector) {
   this->Bind();
   glCall(glUniform3fv(getUniformLocation(uniformName), 1, &vector[0]));
-  this->UnBind();
 }
 
 /*
