@@ -227,10 +227,6 @@ public:
     lightingShaderProgramPtr->setUniformMatrix4fv("projection", proj);
     lightingShaderProgramPtr->setUniformMatrix4fv("view", view);
 
-    std::cout << "RENDER: View[0][3] = " << view[0][3]
-              << ", View[1][3] = " << view[1][3]
-              << ", View[2][3] = " << view[2][3] << std::endl;
-
     glm::mat4 model = glm::mat4(1.0f);
     lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
 
@@ -288,14 +284,16 @@ public:
   }
 
   void HandleInput(GLFWwindow *window) override {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+    if (isCursorHidden) {
+      if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(LEFT, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+    }
   }
 
   void HandleInput(GLFWwindow *window, int key, int scancode, int action,

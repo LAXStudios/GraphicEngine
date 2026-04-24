@@ -63,14 +63,6 @@ public:
 
     shaderProgramPtr->Bind();
 
-    // Was ist die tatsächliche ID?
-    std::cout << "ShaderProgram ID: " << shaderProgramPtr->GetID() << std::endl;
-
-    // Welches Programm ist gerade aktiv in OpenGL?
-    GLint currentProgram;
-    glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
-    std::cout << "GL_CURRENT_PROGRAM: " << currentProgram << std::endl;
-
     glm::mat4 view = camera.GetViewMatrix();
 
     shaderProgramPtr->setUniformMatrix4fv("view", view);
@@ -99,14 +91,17 @@ public:
   }
 
   void HandleInput(GLFWwindow *window) override {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      camera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      camera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-      camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (isCursorHidden) {
+
+      if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+    }
   }
 
   void HandleInput(GLFWwindow *window, int key, int scancode, int action,
