@@ -47,10 +47,7 @@ public:
     shaderProgramPtr->Bind();
 
     myModel = new Model("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                        "ModelLoadingScene/Assets/1-stud-brick.obj");
-
-    // myModel = new Model("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-    //                      "ModelLoadingScene/Assets/backpack/backpack.obj");
+                        "ModelLoadingScene/Assets/backpack/backpack.obj");
 
     proj = glm::perspective(glm::radians(camera.Zoom), 1280.0f / 800.0f, 0.1f,
                             100.0f);
@@ -72,7 +69,7 @@ public:
     proj =
         glm::perspective(glm::radians(camera.Zoom), aspectRatio, 0.1f, 100.0f);
 
-    // shaderProgramPtr->setUniformMatrix4fv("projection", proj);
+    shaderProgramPtr->setUniformMatrix4fv("projection", proj);
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));

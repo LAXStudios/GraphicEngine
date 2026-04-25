@@ -207,6 +207,17 @@ public:
 
     float previousTime = glfwGetTime();
 
+    int displayW, displayH;
+    glfwGetFramebufferSize(_window, &displayW, &displayH);
+    glViewport(0, 0, displayW, displayH);
+
+    if (auto *scene = sceneManager.getCurrent()) {
+      scene->ensureInitialized(_window);
+      float aspect =
+          static_cast<float>(displayW) / static_cast<float>(displayH);
+      scene->OnResize(aspect);
+    }
+
     while (!glfwWindowShouldClose(_window)) {
       float currentTime = glfwGetTime();
       float deltaTime = currentTime - previousTime;
@@ -243,12 +254,16 @@ public:
 
       imGuiLayer->Render();
 
-      int displayW, displayH;
-      glfwGetFramebufferSize(_window, &displayW, &displayH);
-      glViewport(0, 0, displayW, displayH);
-
       glfwSwapBuffers(_window);
       glfwPollEvents();
+
+      int fbw, fbh;
+      glfwGetFramebufferSize(_window, &fbw, &fbh);
+      if (fbw != displayW || fbh != displayH) {
+        displayW = fbw;
+        displayH = fbh;
+        handleResize(displayW, displayH);
+      }
     }
   }
 

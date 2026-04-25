@@ -7,9 +7,55 @@
 #include <iostream>
 #include <vector>
 #define GLM_ENABLE_EXPERIMENTAL
+#include "../../../../extern/stb/stb_image.h"
 #include <glm/gtx/string_cast.hpp>
 #include <glm/trigonometric.hpp>
 #include <string>
+
+class lTexture {
+private:
+  unsigned int ID;
+  std::string filePath;
+  unsigned char *data;
+
+  int width, height;
+
+public:
+  lTexture(const std::string &filePath)
+      : filePath(filePath), data(nullptr), width(0), height(0) {
+    stbi_set_flip_vertically_on_load(true);
+
+    int nrComponents = 0;
+    unsigned char *data =
+        stbi_load(filePath.c_str(), &width, &height, &nrComponents, 0);
+
+    glCall(glGenTextures(1, &ID));
+    glCall(glBindTexture(GL_TEXTURE_2D, ID));
+
+    if (!data)
+      std::cout << "Error while Texture gen\n";
+
+    glCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
+                        GL_UNSIGNED_BYTE, data));
+    glCall(glGenerateMipmap(GL_TEXTURE_2D));
+
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+  }
+
+  ~lTexture() { glCall(glDeleteTextures(1, &ID)); }
+
+  unsigned int GetID() const { return ID; }
+
+  void Bind(unsigned int slot = 0) const {
+    glCall(glActiveTexture(GL_TEXTURE0 + slot));
+    glCall(glBindTexture(GL_TEXTURE_2D, ID));
+  }
+
+  void UnBind() const { glCall(glBindTexture(GL_TEXTURE_2D, 0)); }
+};
 
 class BasicMultipleLightsScene : public Scene {
 private:
@@ -18,8 +64,8 @@ private:
 
   VertexArray *cubeVAOPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
-  Texture *texture = nullptr;
-  Texture *texture01 = nullptr;
+  lTexture *texture = nullptr;
+  lTexture *texture01 = nullptr;
 
   FPSCamera fpsCamera{glm::vec3(0.0f, 0.0f, 3.0f)};
 
@@ -59,11 +105,11 @@ public:
     cubeVAOPtr->Bind();
     vertexBufferPtr->Bind();
 
-    texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicMultipleLightsScene/Assets/container2.png");
+    texture = new lTexture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                           "BasicMultipleLightsScene/Assets/container2.png");
     texture01 =
-        new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                    "BasicMultipleLightsScene/Assets/container2_specular.png");
+        new lTexture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
+                     "BasicMultipleLightsScene/Assets/container2_specular.png");
     texture->Bind();
     lightingShaderProgramPtr->Bind();
     lightingShaderProgramPtr->setUniform1i("material.diffuse", 0);
@@ -238,14 +284,16 @@ public:
   }
 
   void HandleInput(GLFWwindow *window) override {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-      fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+    if (isCursorHidden) {
+      if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(FORWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(BACKWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(LEFT, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        fpsCamera.ProcessKeyboard(RIGHT, deltaTime);
+    }
   }
 
   void HandleInput(GLFWwindow *window, int key, int scancode, int action,

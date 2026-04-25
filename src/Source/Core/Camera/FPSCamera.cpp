@@ -40,10 +40,13 @@ void FPSCamera::ProcessKeyboard(CameraMovement direction, float deltaTime) {
     Position += Right * velocity;
   if (direction == LEFT)
     Position -= Right * velocity;
+
+  // std::cout << "velocity: " << velocity << std::endl;
 }
 
 void FPSCamera::ProcessMouseMovement(float xOffset, float yOffset,
                                      bool constantPitch) {
+
   xOffset *= MouseSensitivity;
   yOffset *= MouseSensitivity;
 
