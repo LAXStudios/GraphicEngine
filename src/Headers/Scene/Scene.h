@@ -2,8 +2,6 @@
 
 #include "GLFW/glfw3.h"
 #include <atomic>
-#include <chrono>
-#include <iostream>
 #include <string>
 
 class Scene {
@@ -55,4 +53,12 @@ public:
   std::size_t id() const noexcept { return _id; }
 
   std::string name() const noexcept { return _name; }
+
+  inline std::string programPath(std::string relative) {
+    if (relative.starts_with("/")) {
+      return std::string(PROGRAM_PATH) + relative;
+    } else {
+      return std::string(PROGRAM_PATH) + "/" + relative;
+    }
+  }
 };

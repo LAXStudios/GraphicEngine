@@ -15,7 +15,7 @@
 class ModelLoadingScene : public Scene {
 private:
   std::unique_ptr<ShaderProgram> shaderProgramPtr = nullptr;
-  Model *myModel = nullptr;
+  std::unique_ptr<Model> myModel = nullptr;
 
   glm::mat4 view;
   glm::mat4 proj;
@@ -42,12 +42,11 @@ public:
               << glfwGetCurrentContext() << std::endl;
 
     shaderProgramPtr = std::make_unique<ShaderProgram>(
-        "/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-        "ModelLoadingScene/Shader/basic.glsl");
+        programPath("Main/Scenes/ModelLoadingScene/Shader/basic.glsl"));
     shaderProgramPtr->Bind();
 
-    myModel = new Model("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                        "ModelLoadingScene/Assets/backpack/backpack.obj");
+    myModel = std::make_unique<Model>(programPath(
+        "Main/Scenes/ModelLoadingScene/Assets/backpack/backpack.obj"));
 
     proj = glm::perspective(glm::radians(camera.Zoom), 1280.0f / 800.0f, 0.1f,
                             100.0f);

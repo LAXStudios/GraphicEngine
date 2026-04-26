@@ -3,6 +3,7 @@ project(GraphicEngine LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(IMGUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui")
 set(IMGUI_BACKEND_DIR "${IMGUI_DIR}/backend")
@@ -48,6 +49,10 @@ target_link_libraries(${PROJECT_NAME}
     # SOIL
     glm::glm
     assimp::assimp
+)
+
+target_compile_definitions(GraphicEngine PRIVATE
+  PROGRAM_PATH="${CMAKE_SOURCE_DIR}/src"
 )
 
 target_link_directories(${PROJECT_NAME} PRIVATE
