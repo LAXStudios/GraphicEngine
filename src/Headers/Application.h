@@ -3,15 +3,17 @@
 #include "Core/Common/ErrorHandling.h"
 #include "Scene/Scene.h"
 #include "Scene/SceneManager.h"
+#include "imgui.h"
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <GLFW/glfw3.h>
-#include <exception>
+#include <utility>
+#include <vector>
 #define NOTHING
 #include "../Headers/ImGui/ImGuiLayer.h"
 #include <cstdio>
+#include <map>
 #include <memory>
-#include <stdatomic.h>
 #include <string>
 
 inline static void glfwErrorCallback(int error, const char *description) {
@@ -31,8 +33,8 @@ private:
 
   ImVec4 clearColor = ImVec4(0.129f, 0.145f, 0.160f, 1.00f);
 
-  // TODO Andere Lösung dafür finden
-  // bool firstRun = true;
+  // Kategorie | Scenes
+  std::vector<std::pair<std::string, std::vector<Scene *>>> groupedScenes;
 
   static void keyCallbackStatic(GLFWwindow *window, int key, int scancode,
                                 int action, int mods) {
@@ -54,6 +56,26 @@ private:
 
     auto scene = sceneManager.getCurrent();
     scene->HandleInput(window, key, scancode, action, mods);
+  }
+
+  std::vector<std::pair<std::string, std::vector<Scene *>>>
+  createGroupedScenesVector() {
+    std::map<std::string, std::vector<Scene *>> grouped;
+    std::vector<std::string> order;
+
+    for (auto &scene : sceneManager.getScenesAsVector()) {
+      const std::string &cat = scene->category();
+      if (grouped.find(cat) == grouped.end()) {
+        order.push_back(cat);
+      }
+      grouped[cat].push_back(scene.get());
+    }
+
+    std::vector<std::pair<std::string, std::vector<Scene *>>> result;
+    for (const auto &cat : order) {
+      result.emplace_back(cat, grouped[cat]);
+    }
+    return result;
   }
 
   static void mouseButtonCallbackStatic(GLFWwindow *window, int button,
@@ -93,11 +115,20 @@ private:
   }
 
   void DrawMainMenuBar(double fps) {
+
     if (ImGui::BeginMainMenuBar()) {
       if (ImGui::BeginMenu("Scenes")) {
-        for (std::unique_ptr<Scene> &scene : sceneManager.getScenesAsVector()) {
-          if (ImGui::MenuItem(scene->name().c_str())) {
-            sceneManager.setCurrentScene(scene.get());
+        for (auto &group : groupedScenes) {
+          if (!group.first.empty()) {
+            ImGui::SeparatorText(group.first.c_str());
+          } else {
+            ImGui::Separator();
+          }
+
+          for (auto scene : group.second) {
+            if (ImGui::MenuItem(scene->name().c_str())) {
+              sceneManager.setCurrentScene(scene);
+            }
           }
         }
 
@@ -136,6 +167,8 @@ public:
   void Init() {
 
     sceneManager.setSceneVectorFirstAsStartPoint();
+
+    groupedScenes = createGroupedScenesVector();
 
     glfwSetErrorCallback(glfwErrorCallback);
     if (!glfwInit()) {

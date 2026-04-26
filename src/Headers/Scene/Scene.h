@@ -8,6 +8,7 @@ class Scene {
 private:
   size_t _id;
   std::string _name;
+  std::string _category;
 
   bool _initialized = false;
 
@@ -23,7 +24,9 @@ private:
 
 public:
   Scene() : _id(generateId()) {}
-  Scene(std::string name) : _name(name) {}
+  Scene(const std::string &name) : _name(name) {}
+  Scene(const std::string &name, const std::string &category)
+      : _name(name), _category(category) {}
 
   void ensureInitialized(GLFWwindow *window) {
     if (!_initialized) {
@@ -53,6 +56,7 @@ public:
   std::size_t id() const noexcept { return _id; }
 
   std::string name() const noexcept { return _name; }
+  std::string category() const noexcept { return _category; }
 
   inline std::string programPath(std::string relative) {
     if (relative.starts_with("/")) {

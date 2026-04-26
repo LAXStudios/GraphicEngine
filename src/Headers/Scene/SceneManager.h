@@ -1,10 +1,7 @@
 #pragma once
 
-#include "GLFW/glfw3.h"
 #include "Scene.h"
 #include <algorithm>
-#include <iostream>
-#include <iterator>
 #include <memory>
 #include <string>
 #include <utility>
@@ -14,7 +11,7 @@ class SceneManager {
 private:
   std::vector<std::unique_ptr<Scene>> scenes;
 
-  std::unique_ptr<Scene> *currentScene;
+  Scene *currentScene;
 
 public:
   bool startSceneIsSet = false;
@@ -42,21 +39,23 @@ public:
 
   std::vector<std::unique_ptr<Scene>> &getScenesAsVector() { return scenes; }
 
+  /*
   void setCurrentScene(Scene *scene) {
-
     for (std::unique_ptr<Scene> &s : scenes) {
       if (s->name() == scene->name()) {
         if (!startSceneIsSet) {
           startSceneIsSet = true;
         }
-        currentScene = &s;
+        currentScene = s;
       }
     }
   }
+*/
+  void setCurrentScene(Scene *scene) { currentScene = scene; }
 
   void setSceneVectorFirstAsStartPoint() {
     if (!scenes.empty()) {
-      currentScene = &scenes.front();
+      currentScene = scenes.front().get();
       startSceneIsSet = true;
     }
   }
@@ -65,6 +64,6 @@ public:
 
   Scene *getCurrent() {
     // std::cout << "currentScene:" << currentScene->get()->name() << "\n";
-    return currentScene->get();
+    return currentScene;
   }
 };

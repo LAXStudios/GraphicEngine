@@ -1,4 +1,5 @@
 #include "../../../Headers/Core/Common/Common.h"
+#include "Headers/Scene/Scene.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
@@ -83,7 +84,8 @@ private:
   float lastX, lastY;
 
 public:
-  BasicMultipleLightsScene(const std::string &name) : Scene(name) {}
+  BasicMultipleLightsScene(const std::string &name, const std::string &category)
+      : Scene(name, category) {}
 
   void InitScene(GLFWwindow *window) override {
     lightingShaderProgramPtr = new ShaderProgram(
