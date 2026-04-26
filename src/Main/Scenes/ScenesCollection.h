@@ -1,4 +1,4 @@
-// #include "BasicDiffuseMapScene/BasicDiffuseMapScene.h"
+#include "BasicDiffuseMapScene/BasicDiffuseMapScene.h"
 // #include "BasicDirectionalLightScene/BasicDirectionalLightScene.h"
 // #include "BasicFlashlightScene/BasicFlashlightScene.h"
 #include "BasicMaterialScene/BasicMaterialScene.h"

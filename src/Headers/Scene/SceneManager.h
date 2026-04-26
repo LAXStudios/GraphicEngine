@@ -39,18 +39,6 @@ public:
 
   std::vector<std::unique_ptr<Scene>> &getScenesAsVector() { return scenes; }
 
-  /*
-  void setCurrentScene(Scene *scene) {
-    for (std::unique_ptr<Scene> &s : scenes) {
-      if (s->name() == scene->name()) {
-        if (!startSceneIsSet) {
-          startSceneIsSet = true;
-        }
-        currentScene = s;
-      }
-    }
-  }
-*/
   void setCurrentScene(Scene *scene) { currentScene = scene; }
 
   void setSceneVectorFirstAsStartPoint() {
@@ -62,8 +50,5 @@ public:
 
   Scene *current() { return scenes.empty() ? nullptr : scenes.back().get(); }
 
-  Scene *getCurrent() {
-    // std::cout << "currentScene:" << currentScene->get()->name() << "\n";
-    return currentScene;
-  }
+  Scene *getCurrent() { return currentScene; }
 };

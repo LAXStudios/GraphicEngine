@@ -1,9 +1,11 @@
 #include "../../../Headers/Core/Common/Common.h"
+#include "Headers/Core/Texture/Texture.h"
+#include "Headers/Core/TextureManager/TextureManager.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/vector_float3.hpp>
-#include <iostream>
+#include <vector>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 #include <glm/trigonometric.hpp>
@@ -16,9 +18,8 @@ private:
 
   VertexArray *cubeVAOPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
-  Texture *texture = nullptr;
-  Texture *texture01 = nullptr;
-  Texture *texture02 = nullptr;
+
+  std::vector<unsigned int> textures;
 
   FPSCamera fpsCamera{glm::vec3(0.0f, 0.0f, 3.0f)};
 
@@ -36,8 +37,14 @@ private:
 
   float lastX, lastY;
 
+  void bindTexture(uint32_t handle, uint32_t position) {
+    glActiveTexture(GL_TEXTURE0 + static_cast<GLenum>(position));
+    glBindTexture(GL_TEXTURE_2D, handle);
+  }
+
 public:
-  BasicDiffuseMapScene(const std::string &name) : Scene(name) {}
+  BasicDiffuseMapScene(const std::string &name, const std::string &category)
+      : Scene(name, category) {}
 
   void InitScene(GLFWwindow *window) override {
     lightingShaderProgramPtr =
@@ -59,21 +66,24 @@ public:
     cubeVAOPtr->Bind();
     vertexBufferPtr->Bind();
 
-    texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicDiffuseMapScene/Assets/container2.png");
-    texture01 =
-        new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                    "BasicDiffuseMapScene/Assets/container2_specular.png");
-    texture02 = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                            "BasicDiffuseMapScene/Assets/matrix.jpg");
-    texture->Bind();
+    textures.push_back(TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/BasicDiffuseMapScene/Assets/container2.png")));
+
+    textures.push_back(TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/BasicDiffuseMapScene/Assets/"
+                    "container2_specular.png")));
+
+    textures.push_back(TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/BasicDiffuseMapScene/Assets/matrix.jpg")));
+
+    bindTexture(textures[0], 0);
     lightingShaderProgramPtr->Bind();
     lightingShaderProgramPtr->setUniform1i("material.diffuse", 0);
 
-    texture01->Bind();
+    bindTexture(textures[1], 1);
     lightingShaderProgramPtr->setUniform1i("material.specular", 1);
 
-    texture02->Bind();
+    bindTexture(textures[2], 2);
     lightingShaderProgramPtr->setUniform1i("material.emission", 2);
 
     VertexBufferLayout layout;
@@ -119,9 +129,10 @@ public:
     glm::mat4 model = glm::mat4(1.0f);
     lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
 
-    texture->Bind(0);
-    texture01->Bind(1);
-    texture02->Bind(2);
+    for (unsigned int i = textures.size(); i <= 0; i++) {
+      std::cout << "test\n";
+      bindTexture(textures[i], textures.size() - i);
+    }
 
     renderer.draw(*cubeVAOPtr, *lightingShaderProgramPtr, 36);
 

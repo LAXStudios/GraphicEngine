@@ -1,8 +1,8 @@
 #pragma once
 #include "../Common/Common.h"
+#include "Headers/Core/Texture/Texture.h"
 
 #include <cstdint>
-#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -28,22 +28,19 @@ public:
     return instance;
   }
 
-  // Verhindert Kopieren
+  // resists copyieng
   TextureManager(const TextureManager &) = delete;
   TextureManager &operator=(const TextureManager &) = delete;
 
-  // Lade eine Textur oder gib die existierende zurück (Shared Ownership)
+  // laod texture or give existing back
   uint32_t LoadTexture(const std::string &path);
 
-  // Gib eine Textur frei (Referenzzähler senken)
   void ReleaseTexture(uint32_t handle);
 
-  // Hole die echte OpenGL-ID für das Binden
   GLuint GetGLId(uint32_t handle) const;
 
-  // Cleanup bei Engine-Shutdown (alle Texturen löschen)
   void Shutdown();
 
-  // Prüfen, ob eine Textur existiert
+  // check if texture exists
   bool HasTexture(uint32_t handle) const;
 };

@@ -52,7 +52,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
 
-  // Vertices laden (bleibt gleich)
+  // Vertices laden
   for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
     Vertex vertex;
     vertex.Position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y,
@@ -83,7 +83,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     vertices.push_back(vertex);
   }
 
-  // Indices laden (bleibt gleich)
+  // Indices laden
   for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
     aiFace face = mesh->mFaces[i];
     for (unsigned int j = 0; j < face.mNumIndices; j++) {
@@ -91,7 +91,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     }
   }
 
-  // --- SICHERE TEXTUR-LADUNG ---
+  // lade textures
   aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
   std::vector<Texture> textures;
 

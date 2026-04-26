@@ -4,7 +4,6 @@
 #include <GL/gl.h>
 #include <glm/glm.hpp>
 #include <memory>
-#include <string>
 #include <vector>
 
 struct Vertex {
