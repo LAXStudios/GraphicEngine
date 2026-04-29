@@ -24,9 +24,9 @@ int main(int argc, char *argv[]) {
   // application.RegisterScene(
   //  std::make_unique<TransformationScene>("TransformationScene"));
 
-  // application.RegisterScene(
-  //     std::make_unique<CatCubes3DScene>("CatCubes3DScene"));
-  // application.RegisterScene(std::make_unique<MovementScene>("MovementScene"));
+  application.RegisterScene(
+      std::make_unique<CatCubes3DScene>("CatCubes3DScene"));
+  application.RegisterScene(std::make_unique<MovementScene>("MovementScene"));
   // application.RegisterScene(
   // std::make_unique<ColorLightningScene>("ColorLightningScene"));
   // application.RegisterScene(

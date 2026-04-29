@@ -1,4 +1,5 @@
 #include "../../../Headers/Core/Common/Common.h"
+#include "Headers/Core/TextureManager/TextureManager.h"
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <glm/detail/qualifier.hpp>
@@ -7,7 +8,6 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/vector_float3.hpp>
 #include <glm/trigonometric.hpp>
-#include <memory>
 #include <vector>
 
 class CatCubes3DScene : public Scene {
@@ -16,7 +16,8 @@ private:
 
   VertexArray *vertexArrayPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
-  Texture *texture = nullptr;
+
+  unsigned int texture;
 
   // glm::mat4 model;
   glm::mat4 view;
@@ -27,8 +28,8 @@ public:
 
   void InitScene() override {
     shaderProgramPtr =
-        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "CatCubes3DScene/Shaders/shader.glsl");
+        new ShaderProgram(programPath("Main/Scenes/"
+                                      "CatCubes3DScene/Shaders/shader.glsl"));
     shaderProgramPtr->Bind();
 
     vertexArrayPtr = new VertexArray();
@@ -47,9 +48,10 @@ public:
     vertexArrayPtr->UnBind();
     vertexBufferPtr->UnBind();
 
-    texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "CatCubes3DScene/Assets/soka_blue_cutie.png");
-    texture->Bind();
+    texture = TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/"
+                    "CatCubes3DScene/Assets/soka_blue_cutie.png"));
+    bindTexture(texture, 0);
 
     shaderProgramPtr->Bind();
     shaderProgramPtr->setUniform1i("texture0", 0);
@@ -110,7 +112,7 @@ public:
       shaderProgramPtr->setUniformMatrix4fv("model", model);
       //  shaderProgramPtr->setUniformMatrix4fv("proj", proj);
 
-      texture->Bind();
+      bindTexture(texture, 0);
       renderer.draw(*vertexArrayPtr, *shaderProgramPtr, 36);
     }
   }

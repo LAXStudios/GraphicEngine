@@ -90,7 +90,6 @@ public:
 
   void HandleInput(GLFWwindow *window) override {
     if (isCursorHidden) {
-
       if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
       if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)

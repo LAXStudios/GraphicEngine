@@ -1,9 +1,8 @@
 #include "../../../Headers/Core/Common/Common.h"
+#include "Headers/Core/TextureManager/TextureManager.h"
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <GLFW/glfw3.h>
-#include <cmath>
-#include <cstdlib>
 #include <glm/detail/qualifier.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
@@ -12,59 +11,9 @@
 #include <glm/ext/vector_float4.hpp>
 #include <glm/geometric.hpp>
 #include <glm/trigonometric.hpp>
-#include <memory>
-#include <sstream>
 #include <string>
 #include <thread>
 #include <vector>
-
-// #define STB_IMAGE_IMPLEMENTATION
-#include "../../../../extern/stb/stb_image.h"
-
-class lTexture {
-private:
-  unsigned int ID;
-  std::string filePath;
-  unsigned char *data;
-
-  int width, height;
-
-public:
-  lTexture(const std::string &filePath)
-      : filePath(filePath), data(nullptr), width(0), height(0) {
-    stbi_set_flip_vertically_on_load(true);
-
-    int nrComponents = 0;
-    unsigned char *data =
-        stbi_load(filePath.c_str(), &width, &height, &nrComponents, 0);
-
-    glCall(glGenTextures(1, &ID));
-    glCall(glBindTexture(GL_TEXTURE_2D, ID));
-
-    if (!data)
-      std::cout << "Error while Texture gen\n";
-
-    glCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
-                        GL_UNSIGNED_BYTE, data));
-    glCall(glGenerateMipmap(GL_TEXTURE_2D));
-
-    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-    glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-  }
-
-  ~lTexture() { glCall(glDeleteTextures(1, &ID)); }
-
-  unsigned int GetID() const { return ID; }
-
-  void Bind(unsigned int slot) const {
-    glCall(glActiveTexture(GL_TEXTURE0 + slot));
-    glCall(glBindTexture(GL_TEXTURE_2D, ID));
-  }
-
-  void UnBind() const { glCall(glBindTexture(GL_TEXTURE_2D, 0)); }
-};
 
 class MovementScene : public Scene {
 private:
@@ -72,33 +21,26 @@ private:
 
   VertexArray *vertexArrayPtr = nullptr;
   VertexBuffer *vertexBufferPtr = nullptr;
-  lTexture *texture = nullptr;
+  unsigned int texture;
 
-  // glm::mat4 model;
   glm::mat4 view;
   glm::mat4 proj;
 
-  glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0);
-  glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-  glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+  bool firstMouse = true;
+  bool isCursorHidden;
 
-  float deltaTime = 0;
-  float cameraSpeed;
+  float deltaTime, aspectRatio;
+  float lastX, lastY;
 
-  bool firstMousePosInput = true;
-  bool isCursorHidden = true;
-
-  double lastX = 0, lastY = 0;
-
-  float yaw, pitch;
+  FPSCamera camera{glm::vec3(0.0f, 0.0f, 3.0f)};
 
 public:
   MovementScene(const std::string &name) : Scene(name) {}
 
   void InitScene(GLFWwindow *window) override {
     shaderProgramPtr =
-        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "MovementScene/Shaders/shader.glsl");
+        new ShaderProgram(programPath("Main/Scenes/"
+                                      "MovementScene/Shaders/shader.glsl"));
     shaderProgramPtr->Bind();
 
     vertexArrayPtr = new VertexArray();
@@ -117,9 +59,11 @@ public:
     vertexArrayPtr->UnBind();
     vertexBufferPtr->UnBind();
 
-    texture = new lTexture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                           "MovementScene/Assets/soka_blue_cutie.png");
-    texture->Bind(1);
+    texture = TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/"
+                    "MovementScene/Assets/soka_blue_cutie.png"));
+
+    bindTexture(texture, 0);
 
     shaderProgramPtr->Bind();
     shaderProgramPtr->setUniform1i("texture0", 0);
@@ -128,26 +72,23 @@ public:
     shaderProgramPtr->setUniformMatrix4fv("proj", proj);
 
     if (glfwRawMouseMotionSupported()) {
-
       glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
       std::cout << "Supported\n";
     }
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    isCursorHidden = true;
   }
 
   void HandleInput(GLFWwindow *window) override {
-    cameraSpeed = 4.0f * deltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      cameraPos += cameraSpeed * cameraFront;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      cameraPos -= cameraSpeed * cameraFront;
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      cameraPos -=
-          glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-      cameraPos +=
-          glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (isCursorHidden) {
+      if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+      if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
     }
   }
 
@@ -158,54 +99,29 @@ public:
   }
 
   void HandleMouseInput(GLFWwindow *window, double xpos, double ypos) override {
-    if (isCursorHidden) {
+    float xPos = static_cast<float>(xpos);
+    float yPos = static_cast<float>(ypos);
 
-      if (firstMousePosInput) {
-        lastX = xpos;
-        lastY = ypos;
-        firstMousePosInput = false;
-      }
-
-      float xOffset = xpos - lastX;
-      float yOffset = lastY - ypos;
-      lastX = xpos;
-      lastY = ypos;
-
-      float sensitivity = 0.1f;
-      xOffset *= sensitivity;
-      yOffset *= sensitivity;
-
-      yaw += xOffset;
-      pitch += yOffset;
-
-      if (pitch > 89.0f)
-        pitch = 89.0f;
-      if (pitch < -89.0f)
-        pitch = -89.0f;
-
-      glm::vec3 direction;
-      direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-      direction.y = sin(glm::radians(pitch));
-      direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-      cameraFront = glm::normalize(direction);
+    if (firstMouse) {
+      lastX = xPos;
+      lastY = yPos;
+      firstMouse = false;
     }
+
+    float xOffset = xPos - lastX;
+    float yOffset = lastY - yPos;
+
+    lastX = xPos;
+    lastY = yPos;
+
+    if (isCursorHidden)
+      camera.ProcessMouseMovement(xOffset, yOffset);
   }
 
-  void Update(float dt) override {
-    // model = glm::mat4(1.0f);
-    // view = glm::mat4(1.0f);
-
-    // model = glm::rotate(model, dt, glm::vec3(0.5f, 1.0f, 0.0f));
-
-    // view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
-    deltaTime = dt;
-
-    // view = glm::mat4(1.0f);
-    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-  }
+  void Update(float dt) override { deltaTime = dt; }
 
   void OnResize(float aspectRatio) override {
-    std::cout << "[MovementScene] OnResize\n";
+    this->aspectRatio = aspectRatio;
     proj = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
     shaderProgramPtr->setUniformMatrix4fv("proj", proj);
   }
@@ -213,11 +129,13 @@ public:
   void Render() override {
     RendererWrapper renderer{};
 
+    view = camera.GetViewMatrix();
     shaderProgramPtr->setUniformMatrix4fv("view", view);
 
-    std::cout << "RENDER: View[0][3] = " << view[0][3]
-              << ", View[1][3] = " << view[1][3]
-              << ", View[2][3] = " << view[2][3] << std::endl;
+    proj =
+        glm::perspective(glm::radians(camera.Zoom), aspectRatio, 0.1f, 100.0f);
+
+    shaderProgramPtr->setUniformMatrix4fv("proj", proj);
 
     for (unsigned int i = 0; i < 10; i++) {
       glm::mat4 model = glm::mat4(1.0f);
@@ -228,7 +146,7 @@ public:
       shaderProgramPtr->Bind();
       shaderProgramPtr->setUniformMatrix4fv("model", model);
 
-      texture->Bind(1);
+      bindTexture(texture, 0);
       renderer.draw(*vertexArrayPtr, *shaderProgramPtr, 36);
     }
   }
@@ -244,18 +162,19 @@ public:
           ImGui::Text("isCursorHidden = false");
 
         ImGui::Text("dt: %.3f", deltaTime);
-        ImGui::Text("cameraSpeed: %.2f", cameraSpeed);
-        ImGui::Text("cameraPos:\n X: %.2f Y: %.2f", cameraPos.x, cameraPos.y);
-        ImGui::Text("cameraFront:\n X: %.2f Y: %.2f", cameraFront.x,
-                    cameraFront.y);
+        ImGui::Text("cameraSpeed: %.2f", camera.MovementSpeed);
+        ImGui::Text("cameraPos:\n X: %.2f Y: %.2f", camera.Position.x,
+                    camera.Position.x);
+        ImGui::Text("cameraFront:\n X: %.2f Y: %.2f", camera.Front.x,
+                    camera.Front.y);
       }
       ImGui::End();
     }
   }
 
-  // INFO: Eigentlicher plan war es wenn TAB dann die momentene Cursor Pos zu
-  // nehmen, und wenn wieder Tab, dann den Cursor direkt zur letzten Pos
-  // setzten, wegen Wayland geht das nicht.
+  ~MovementScene() {}
+
+private:
   void changeCursorState(GLFWwindow *window) {
     if (!glfwGetWindowAttrib(window, GLFW_FOCUSED)) {
       std::cout << "Not Focused" << std::endl;
@@ -279,18 +198,12 @@ public:
       isCursorHidden = true;
     }
 
-    std::cout << "Current Thread ID: " << std::this_thread::get_id()
-              << std::endl;
-
     glfwPollEvents();
     glfwWaitEventsTimeout(0.01);
     glfwPostEmptyEvent();
     glfwFocusWindow(window);
   }
 
-  ~MovementScene() {}
-
-private:
   std::vector<glm::vec3> cubePositions = {
       glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
       glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
