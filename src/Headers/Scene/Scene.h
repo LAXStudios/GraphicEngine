@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Core/TextureManager/TextureManager.h"
 #include "GLFW/glfw3.h"
 #include <atomic>
 #include <string>
@@ -64,5 +65,10 @@ public:
     } else {
       return std::string(PROGRAM_PATH) + "/" + relative;
     }
+  }
+
+  inline void bindTexture(uint32_t handle, uint32_t position) {
+    glActiveTexture(GL_TEXTURE0 + static_cast<GLenum>(position));
+    glBindTexture(GL_TEXTURE_2D, TextureManager::Get().GetGLId(handle));
   }
 };

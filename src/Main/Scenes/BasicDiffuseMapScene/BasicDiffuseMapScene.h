@@ -1,5 +1,4 @@
 #include "../../../Headers/Core/Common/Common.h"
-#include "Headers/Core/Texture/Texture.h"
 #include "Headers/Core/TextureManager/TextureManager.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
@@ -36,11 +35,6 @@ private:
   bool lightHasColor = false;
 
   float lastX, lastY;
-
-  void bindTexture(uint32_t handle, uint32_t position) {
-    glActiveTexture(GL_TEXTURE0 + static_cast<GLenum>(position));
-    glBindTexture(GL_TEXTURE_2D, handle);
-  }
 
 public:
   BasicDiffuseMapScene(const std::string &name, const std::string &category)
@@ -129,10 +123,9 @@ public:
     glm::mat4 model = glm::mat4(1.0f);
     lightingShaderProgramPtr->setUniformMatrix4fv("model", model);
 
-    for (unsigned int i = textures.size(); i <= 0; i++) {
-      std::cout << "test\n";
-      bindTexture(textures[i], textures.size() - i);
-    }
+    bindTexture(textures[0], 0);
+    bindTexture(textures[1], 1);
+    bindTexture(textures[2], 2);
 
     renderer.draw(*cubeVAOPtr, *lightingShaderProgramPtr, 36);
 

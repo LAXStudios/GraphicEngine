@@ -1,7 +1,8 @@
 #pragma once
+
+// clang-format off
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#define NOTHING
 #include "../../../../extern/imgui/backend/imgui_impl_glfw.h"
 #include "../../../../extern/imgui/backend/imgui_impl_opengl3.h"
 #include "../../../../extern/imgui/imgui.h"
@@ -9,24 +10,21 @@
 #include "../../Scene/SceneManager.h"
 #include "../VertexBuffer/VertexBuffer.h"
 #include "../VertexBufferLayout/VertexBufferLayout.h"
-#define NOTHING
 #include "../ShaderProgram/ShaderProgram.h"
 #include "../Texture/Texture.h"
 #include "../TextureManager/TextureManager.h"
 #include "../VertexArray/VertexArray.h"
-#define NOTHING
 #include "../../../Headers/Core/Camera/FPSCamera.h"
 #include "../IndexBuffer/IndexBuffer.h"
 #include "../Mesh/Mesh.h"
 #include "../Renderer/RendererWrapper.h"
 #include "ErrorHandling.h"
-#include <bits/types/wint_t.h>
 #include <cstddef>
 #include <cstdio>
-#include <math.h>
+#include <cmath>
 #include <memory>
-#include <stdio.h>
 #include <string>
 #include <type_traits>
 #include <utility>
 #include <vector>
+// clang-format on

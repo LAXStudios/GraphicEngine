@@ -1,5 +1,4 @@
 #include "../../../Headers/Core/TextureManager/TextureManager.h"
-#include "Headers/Core/Texture/Texture.h"
 #include <cstdint>
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION

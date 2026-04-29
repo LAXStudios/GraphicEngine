@@ -1,7 +1,5 @@
 #pragma once
-#include "../Common/Common.h"
-#include "Headers/Core/Texture/Texture.h"
-
+#include <GL/glew.h>
 #include <cstdint>
 #include <string>
 #include <unordered_map>
