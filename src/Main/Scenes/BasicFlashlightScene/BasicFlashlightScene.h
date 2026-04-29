@@ -1,10 +1,11 @@
 #include "../../../Headers/Core/Common/Common.h"
+#include "Headers/Core/TextureManager/TextureManager.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/vector_float3.hpp>
-#include <iostream>
+#include <vector>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 #include <glm/trigonometric.hpp>
@@ -21,6 +22,8 @@ private:
 
   FPSCamera fpsCamera{glm::vec3(0.0f, 0.0f, 3.0f)};
 
+  std::vector<unsigned int> textures;
+
   float deltaTime;
 
   glm::mat4 view;
@@ -35,12 +38,12 @@ private:
   float lastX, lastY;
 
 public:
-  BasicFlashlightScene(const std::string &name) : Scene(name) {}
+  BasicFlashlightScene(const std::string &name, const std::string &category)
+      : Scene(name, category) {}
 
   void InitScene(GLFWwindow *window) override {
-    lightingShaderProgramPtr =
-        new ShaderProgram("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicFlashlightScene/Shaders/flashlightShader.glsl");
+    lightingShaderProgramPtr = new ShaderProgram(programPath(
+        "Main/Scenes/BasicFlashlightScene/Shaders/flashlightShader.glsl"));
     lightingShaderProgramPtr->Bind();
 
     cubeVAOPtr = new VertexArray();
@@ -52,16 +55,16 @@ public:
     cubeVAOPtr->Bind();
     vertexBufferPtr->Bind();
 
-    texture = new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                          "BasicFlashlightScene/Assets/container2.png");
-    texture01 =
-        new Texture("/home/lax/Coding/GraphicEngine/src/Main/Scenes/"
-                    "BasicFlashlightScene/Assets/container2_specular.png");
-    texture->Bind();
+    textures.push_back(TextureManager::Get().LoadTexture(
+        programPath("Main/Scenes/BasicFlashlightScene/Assets/container2.png")));
+    textures.push_back(TextureManager::Get().LoadTexture(programPath(
+        "Main/Scenes/BasicFlashlightScene/Assets/container2_specular.png")));
+
     lightingShaderProgramPtr->Bind();
+    bindTexture(textures[0], 0);
     lightingShaderProgramPtr->setUniform1i("material.diffuse", 0);
 
-    texture01->Bind();
+    bindTexture(textures[1], 1);
     lightingShaderProgramPtr->setUniform1i("material.specular", 1);
 
     VertexBufferLayout layout;
@@ -94,6 +97,8 @@ public:
     lightingShaderProgramPtr->setUniform3fv("light.direction", fpsCamera.Front);
     lightingShaderProgramPtr->setUniform1f("light.cutOff",
                                            glm::cos(glm::radians(12.5f)));
+    lightingShaderProgramPtr->setUniform1f("light.outerCutOff",
+                                           glm::cos(glm::radians(17.5f)));
 
     lightingShaderProgramPtr->setUniform3f("objectColor", 1.0f, 0.5f, 0.3f);
     lightingShaderProgramPtr->setUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
@@ -112,8 +117,8 @@ public:
     lightingShaderProgramPtr->setUniformMatrix4fv("projection", proj);
     lightingShaderProgramPtr->setUniform3fv("viewPos", fpsCamera.Position);
 
-    texture->Bind(0);
-    texture01->Bind(1);
+    bindTexture(textures[0], 0);
+    bindTexture(textures[1], 1);
 
     for (unsigned int i = 0; i < cubePositions.size(); i++) {
       glm::mat4 model = glm::mat4(1.0f);

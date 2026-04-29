@@ -38,7 +38,9 @@ private:
   float lastX, lastY;
 
 public:
-  BasicDirectionalLightScene(const std::string &name) : Scene(name) {}
+  BasicDirectionalLightScene(const std::string &name,
+                             const std::string &category)
+      : Scene(name, category) {}
 
   void InitScene(GLFWwindow *window) override {
     lightingShaderProgramPtr = new ShaderProgram(

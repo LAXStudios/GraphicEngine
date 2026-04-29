@@ -81,11 +81,11 @@ void main()
   float epsilon = (light.cutOff - light.outerCutOff);
   float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
   diffuse *= intensity;
-  spec *= intensity;
+  specular *= intensity;
 
   // attenuation
   float distance = length(light.position - FragPos);
-  float attenuation = 1.0 / (light.constant + light.linear + distance + light.quadratic * (distance * distance));
+  float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
   ambient *= attenuation;
   diffuse *= attenuation;

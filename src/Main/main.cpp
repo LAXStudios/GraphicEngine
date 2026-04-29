@@ -34,9 +34,9 @@ int main(int argc, char *argv[]) {
   application.RegisterScene(std::make_unique<BasicDiffuseMapScene>(
       "BasicDiffuseMapScene", "Lighting"));
   application.RegisterScene(std::make_unique<BasicDirectionalLightScene>(
-      "BasicDirectionalLightScene"));
-  // application.RegisterScene(
-  //    std::make_unique<BasicFlashlightScene>("BasicFlashlightScene"));
+      "BasicDirectionalLightScene", "Lighting"));
+  application.RegisterScene(std::make_unique<BasicFlashlightScene>(
+      "BasicFlashlightScene", "Lighting"));
   application.RegisterScene(std::make_unique<BasicMultipleLightsScene>(
       "BasicMultipleLightsScene", "Lighting"));
 
