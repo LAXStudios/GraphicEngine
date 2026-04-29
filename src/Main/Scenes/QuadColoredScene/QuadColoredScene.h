@@ -3,7 +3,6 @@
 #include "../../../Headers/Core/Common/OpenGLHelper.h"
 #include <GL/gl.h>
 #include <GL/glext.h>
-#include <cstddef>
 #include <vector>
 
 class QuadColored : public Scene {
@@ -19,7 +18,7 @@ private:
 public:
   QuadColored(const std::string &name) : Scene(name) {}
 
-  void InitScene() override {
+  void InitScene(GLFWwindow *window) override {
     // Shader sources
 
     shaderSource = OpenGLHelper::LoadShaderFromSourceFile(

@@ -30,7 +30,7 @@ private:
 public:
   DisplayImage(const std::string &name) : Scene(name) {}
 
-  void InitScene() override {
+  void InitScene(GLFWwindow *window) override {
     // shaderSource = OpenGLHelper::LoadShaderFromSourceFile(
     //   "/home/lax/Coding/GraphicEngine/src/Main/Scenes/ImageTextureScenes/"
     // "Shaders/shader.glsl");

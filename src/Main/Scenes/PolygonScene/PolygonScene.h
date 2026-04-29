@@ -1,7 +1,6 @@
 #pragma once
 #include "../../../Headers/Core/Common/Common.h"
 #include <GL/gl.h>
-#include <cstddef>
 
 class PolygonScene : public Scene {
 private:
@@ -13,7 +12,7 @@ private:
 public:
   PolygonScene(const std::string &name) : Scene(name) {}
 
-  void InitScene() override {
+  void InitScene(GLFWwindow *window) override {
 
     std::vector<float> verties{0.0f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f};
 

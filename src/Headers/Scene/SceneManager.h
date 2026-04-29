@@ -24,7 +24,7 @@ public:
   Scene *getById(size_t id) {
     auto it = std::find_if(
         scenes.begin(), scenes.end(),
-        [&](const std::unique_ptr<Scene> &p) { return p && p->id() == id; });
+        [&](const std::unique_ptr<Scene> &p) { return p && p->Id() == id; });
     return (it != scenes.end()) ? it->get() : nullptr;
   }
 

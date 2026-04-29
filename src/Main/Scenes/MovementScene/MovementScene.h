@@ -12,7 +12,6 @@
 #include <glm/geometric.hpp>
 #include <glm/trigonometric.hpp>
 #include <string>
-#include <thread>
 #include <vector>
 
 class MovementScene : public Scene {
@@ -27,7 +26,7 @@ private:
   glm::mat4 proj;
 
   bool firstMouse = true;
-  bool isCursorHidden;
+  bool isCursorHidden = true;
 
   float deltaTime, aspectRatio;
   float lastX, lastY;
@@ -120,11 +119,7 @@ public:
 
   void Update(float dt) override { deltaTime = dt; }
 
-  void OnResize(float aspectRatio) override {
-    this->aspectRatio = aspectRatio;
-    proj = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
-    shaderProgramPtr->setUniformMatrix4fv("proj", proj);
-  }
+  void OnResize(float aspectRatio) override { this->aspectRatio = aspectRatio; }
 
   void Render() override {
     RendererWrapper renderer{};
@@ -154,7 +149,7 @@ public:
   void ImGuiLayer() override {
 
     {
-      if (ImGui::Begin("debug"), ImGuiWindowFlags_AlwaysAutoResize) {
+      if (ImGui::Begin("debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 
         if (isCursorHidden)
           ImGui::Text("isCursorHidden = true");
@@ -204,14 +199,14 @@ private:
     glfwFocusWindow(window);
   }
 
-  std::vector<glm::vec3> cubePositions = {
+  const std::vector<glm::vec3> cubePositions = {
       glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
       glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
       glm::vec3(2.4f, -0.4f, -3.5f),  glm::vec3(-1.7f, 3.0f, -7.5f),
       glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
       glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
 
-  std::vector<float> cubeVertices = {
+  const std::vector<float> cubeVertices = {
       -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f,
       0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
       -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,

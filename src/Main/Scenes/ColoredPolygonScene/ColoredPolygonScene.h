@@ -14,7 +14,7 @@ private:
 public:
   ColoredPolygonScene(const std::string &name) : Scene(name) {}
 
-  void InitScene() override {
+  void InitScene(GLFWwindow *window) override {
 
     const char *vertexSource = R"glsl(
     #version 150 core
@@ -44,7 +44,7 @@ public:
     }
     )glsl";
 
-    float verties[]{
+    const float verties[]{
         0.0f,  0.5f,  1.0f, 0.0f,
         0.0f, // Red
         0.5f,  -0.5f, 0.0f, 1.0f,

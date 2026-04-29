@@ -2,7 +2,7 @@
 // #include "../../../Headers/Core/Common/Common.h"
 #include "../../../Headers/Core/Common/OpenGLHelper.h"
 #include <GLFW/glfw3.h>
-#include <cstdio>
+#include <chrono>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/ext/matrix_transform.hpp>
@@ -46,7 +46,7 @@ private:
 public:
   TransformationScene(const std::string &name) : Scene(name) {}
 
-  void InitScene() override {
+  void InitScene(GLFWwindow *window) override {
 
     shaderSource = OpenGLHelper::LoadShaderFromSourceFile(
         "/home/lax/Coding/GraphicEngine/src/Main/Scenes/TransformationScene/"

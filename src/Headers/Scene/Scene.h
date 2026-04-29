@@ -7,7 +7,7 @@
 
 class Scene {
 private:
-  size_t _id;
+  size_t _id = generateId();
   std::string _name;
   std::string _category;
 
@@ -24,21 +24,19 @@ private:
   }
 
 public:
-  Scene() : _id(generateId()) {}
+  Scene() = default;
   Scene(const std::string &name) : _name(name) {}
   Scene(const std::string &name, const std::string &category)
       : _name(name), _category(category) {}
 
   void ensureInitialized(GLFWwindow *window) {
     if (!_initialized) {
-      InitScene();
       InitScene(window);
       _initialized = true;
     }
   }
 
   virtual ~Scene() = default;
-  virtual void InitScene() {}
   virtual void InitScene(GLFWwindow *window) {}
 
   // Gets the Input Data through the Main-Loop.
@@ -54,7 +52,7 @@ public:
 
   virtual void OnResize(float aspectRatio) {}
 
-  std::size_t id() const noexcept { return _id; }
+  std::size_t Id() const noexcept { return _id; }
 
   std::string name() const noexcept { return _name; }
   std::string category() const noexcept { return _category; }

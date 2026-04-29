@@ -114,7 +114,7 @@ private:
     scene->HandleMouseInput(window, xpos, ypos);
   }
 
-  void DrawMainMenuBar(double fps) {
+  void DrawMainMenuBar(double fps, size_t sceneID) {
 
     if (ImGui::BeginMainMenuBar()) {
       if (ImGui::BeginMenu("Scenes")) {
@@ -135,13 +135,20 @@ private:
         ImGui::EndMenu();
       }
 
-      std::string s = std::to_string(fps);
-      const char *fpsPtr = s.c_str();
+      std::string sFPS = std::to_string(fps);
 
       // FPS Counter on the right Menu Bar
       ImVec2 regionMax = ImGui::GetContentRegionMax();
-      ImGui::SetCursorPosX(regionMax.x - ImGui::CalcTextSize(fpsPtr).x);
-      ImGui::TextUnformatted(fpsPtr);
+      ImGui::SetCursorPosX(regionMax.x - ImGui::CalcTextSize(sFPS.c_str()).x);
+      ImGui::TextUnformatted(sFPS.c_str());
+
+      std::string sSceneId = "Scene Id: " + std::to_string(sceneID) + " | ";
+
+      std::string combined = sFPS + sSceneId;
+
+      ImGui::SetCursorPosX(regionMax.x -
+                           ImGui::CalcTextSize(combined.c_str()).x);
+      ImGui::TextUnformatted(sSceneId.c_str());
 
       ImGui::EndMainMenuBar();
     }
@@ -280,7 +287,7 @@ public:
 
       imGuiLayer->NewFrame();
 
-      DrawMainMenuBar(fps);
+      DrawMainMenuBar(fps, sceneManager.getCurrent()->Id());
 
       auto scene = sceneManager.getCurrent();
       scene->ImGuiLayer();
