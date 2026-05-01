@@ -6,6 +6,7 @@
 #include "Headers/Core/VertexBuffer/VertexBuffer.h"
 #include "Headers/Core/VertexBufferLayout/VertexBufferLayout.h"
 #include "Headers/Scene/Scene.h"
+#include "imgui_internal.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/vector_float3.hpp>
 #include <vector>
@@ -73,7 +74,6 @@ public:
 
     bindTexture(texture, 0);
 
-    // Mehrere Würfel rendern
     for (int x = -2; x <= 2; x++) {
       for (int z = -2; z <= 2; z++) {
         glm::mat4 model = glm::translate(glm::mat4(1.0f),
@@ -85,7 +85,7 @@ public:
       }
     }
 
-    // Grid (Boden-Raster)
+    // Grid
     glm::mat4 model = glm::mat4(1.0f);
     shaderProgramPtr->setUniformMatrix4fv("model", model);
     gridVAO->Bind();
@@ -122,10 +122,8 @@ public:
       camera.SetRightView();
     if (key == GLFW_KEY_KP_7)
       camera.SetTopView();
-    if (key == GLFW_KEY_KP_9) {
-      camera.azimuth = camera.azimuth + 180.0f;
-      camera.elevation = -camera.elevation;
-    }
+    if (key == GLFW_KEY_KP_9)
+      camera.SetOppositeView();
 
     if (key == GLFW_KEY_R) {
       camera.target = glm::vec3(0.0f);
@@ -193,6 +191,8 @@ public:
     ImGui::SameLine();
     if (ImGui::Button("Top (Num 7)"))
       camera.SetTopView();
+    if (ImGui::Button("Opposite (Num 9)"))
+      camera.SetOppositeView();
 
     ImGui::Separator();
     ImGui::TextColored(ImVec4(1, 1, 0, 1), "MMB:       Orbit");

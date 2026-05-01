@@ -97,6 +97,10 @@ public:
     azimuth = 0.0f;
     elevation = -89.0f;
   }
+  void SetOppositeView() {
+    azimuth = azimuth + 180.0f;
+    elevation = -elevation;
+  }
 
   void OnFocus(const glm::vec3 &point, float newDistance = -1.0f) {
     target = point;
