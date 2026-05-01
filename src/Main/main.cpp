@@ -39,10 +39,8 @@ int main(int argc, char *argv[]) {
       "BasicFlashlightScene", "Lighting"));
   application.RegisterScene(std::make_unique<BasicMultipleLightsScene>(
       "BasicMultipleLightsScene", "Lighting"));
-
   application.RegisterScene(
       std::make_unique<ModelLoadingScene>("ModelLoadingScene"));
-
   application.RegisterScene(std::make_unique<InstancedScene>("InstancedScene"));
 
   application.Init();
