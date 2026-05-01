@@ -7,6 +7,7 @@
 #include "ColorLightingScene/ColorLightingScene.h"
 #include "ColoredPolygonScene/ColoredPolygonScene.h"
 #include "ImageTextureScenes/DisplayImageScene.h"
+#include "InstancedScene/InstancedScene.h"
 #include "ModelLoadingScene/ModelLoadingScene.h"
 #include "MovementScene/MovementScene.h"
 #include "PolygonScene/PolygonScene.h"
