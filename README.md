@@ -24,23 +24,20 @@ it didn't worked.
 - A Quad with the basic Gradient (QuadColoredScene)
 - Just a Polygon (PolygonScene)
 - Start Polygon with cool gradient (ColoredPolyGonScene)
-- Just a Image (ImageTextureScene) _bugged_
-- A Texture which is spinning (TransformationScene)
-- Some Cubes with diffrent rotations and cute pics of a cat (CatCubes3DScene) _bugged_
+- Just a Image (ImageTextureScene)
+- A Texture which is spinning (TransformationScene) _bugged_
+- Some Cubes with diffrent rotations and cute pics of a cat (CatCubes3DScene)
 - A Scene with Cubes and the introduction of a FPS camera (MovementScene) _bugged_
 - Just a colored Cube with a light (ColorLightingScene)
 - Basic Cube with changing color and a point light (BasicMaterialScene)
-- Using Diffuse Texture on top an other Texture with lighting (BasicDiffuseMapScene) _bugged_
+- Using Diffuse Texture on top an other Texture with lighting (BasicDiffuseMapScene)
 - Directional Light Shader with pointing on multiple Objects (BasicDirectionalLightScene) _bugged_
-- Flashlight pointed from camera position (BasicFlashLightScene) _bugged_
+- Flashlight pointed from camera position (BasicFlashLightScene)
 - Cubes with Textures (diffuse and specular) lighted by multiple Point Lights (BasicMultipleLightsScene)
 - Scene with loading  a 3D Model (backpack) via assimp and applying diffuse Texture (ModelLoadingScene)
-
-> Info 
-> Some Scenes are Bugged due to the switch from SOIL to stb_image and the updated Texture Class.
-
+- Instancing Scene with textured cubes and on the fly count changing (InstancedScene)
 
 # Use of AI
 I used Lumo by Proton for basic questions, with the second "major" bug, I switched to claude code, and it pointed the bug out (embarrassing).
 My target with this repo is to learn OpenGL and C++. AI is not my start point, more a google on steroids which I use to clarify and ask questions. 
-I am now using Sonnet 4.7 and claude code in terminal for major bugs. I have a claude Pro subscription.
+I am now using Sonnet 4.7 and claude code in terminal for major bugs, helping in general or creating Tutorials for me. I have a claude Pro subscription.
