@@ -13,11 +13,6 @@ private:
 
   bool _initialized = false;
 
-  // INFO: Alles wird über den Namen gemacht, nicht über ID. Daher ist die
-  // untere Methode Obsolete.
-
-  // TODO Fix dass es immer pro Runtime eine Unique ID ist.
-  // BUG: ID gibt immer 0 zurück
   static size_t generateId() {
     static std::atomic<size_t> counter{0};
     return ++counter;
@@ -48,6 +43,8 @@ public:
   virtual void Update(float dt) = 0;
   virtual void Render() = 0;
   virtual void HandleMouseInput(GLFWwindow *window, double xpos, double ypos) {}
+  virtual void HandleScrollInput(GLFWwindow *window, double xoffset,
+                                 double yoffset) {}
   virtual void ImGuiLayer() {}
 
   virtual void OnResize(float aspectRatio) {}

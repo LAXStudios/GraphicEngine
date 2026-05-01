@@ -11,5 +11,6 @@
 #include "ModelLoadingScene/ModelLoadingScene.h"
 #include "MovementScene/MovementScene.h"
 // #include "PolygonScene/PolygonScene.h"
+#include "OrbitCameraScene/OrbitCameraScene.h"
 #include "QuadColoredScene/QuadColoredScene.h"
 #include "TransformationScene/TransformationScene.h"

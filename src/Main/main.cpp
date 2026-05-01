@@ -42,6 +42,8 @@ int main(int argc, char *argv[]) {
   application.RegisterScene(
       std::make_unique<ModelLoadingScene>("ModelLoadingScene"));
   application.RegisterScene(std::make_unique<InstancedScene>("InstancedScene"));
+  application.RegisterScene(
+      std::make_unique<OrbitCameraScene>("OrbitCameraScene"));
 
   application.Init();
 

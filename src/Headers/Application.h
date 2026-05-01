@@ -114,6 +114,24 @@ private:
     scene->HandleMouseInput(window, xpos, ypos);
   }
 
+  static void mouseScrollBackStatic(GLFWwindow *window, double xoffset,
+                                    double yoffset) {
+    Application *app =
+        static_cast<Application *>(glfwGetWindowUserPointer(window));
+
+    if (app)
+      app->mouseScrollBack(window, xoffset, yoffset);
+  }
+
+  void mouseScrollBack(GLFWwindow *window, double xoffset, double yoffset) {
+
+    ImGui_ImplGlfw_ScrollCallback(window, xoffset, yoffset);
+    if (ImGui::GetIO().WantCaptureMouse)
+      return;
+    Scene *scene = sceneManager.getCurrent();
+    scene->HandleScrollInput(window, xoffset, yoffset);
+  }
+
   void DrawMainMenuBar(double fps, size_t sceneID) {
 
     if (ImGui::BeginMainMenuBar()) {
@@ -226,6 +244,7 @@ public:
     glfwSetKeyCallback(_window, keyCallbackStatic);
     glfwSetMouseButtonCallback(_window, mouseButtonCallbackStatic);
     glfwSetCursorPosCallback(_window, mouseCursorPosCallbackStatic);
+    glfwSetScrollCallback(_window, mouseScrollBackStatic);
     glfwSetFramebufferSizeCallback(_window, FramebufferSizeCallback);
 
     // BUG: Wayland tiled fenster sofort, doch es wird kein Resize Event
@@ -308,6 +327,7 @@ public:
   }
 
   ~Application() {
+    delete imGuiLayer;
     glfwDestroyWindow(_window);
     glfwTerminate();
   }
