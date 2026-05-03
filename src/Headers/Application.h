@@ -107,7 +107,7 @@ private:
   void mouseCursorPosCallback(GLFWwindow *window, double xpos, double ypos) {
 
     ImGui_ImplGlfw_CursorPosCallback(window, xpos, ypos);
-    if (ImGui::GetIO().WantSetMousePos)
+    if (ImGui::GetIO().WantCaptureMouse)
       return;
 
     Scene *scene = sceneManager.getCurrent();
@@ -180,10 +180,8 @@ private:
   }
 
   void handleResize(int width, int height) {
-    int fbw, fbh = 1;
-    glfwGetFramebufferSize(_window, &fbw, &fbh);
-    glViewport(0, 0, fbw, fbh);
-    float aspect = static_cast<float>(fbw) / static_cast<float>(fbh);
+    glViewport(0, 0, width, height);
+    float aspect = static_cast<float>(width) / static_cast<float>(height);
     Scene *scene = sceneManager.getCurrent();
     scene->OnResize(aspect);
   }
