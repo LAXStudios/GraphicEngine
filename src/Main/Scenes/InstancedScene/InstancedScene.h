@@ -101,6 +101,7 @@ public:
   void HandleInput(GLFWwindow *window) override {
     if (!isCursorHidden)
       return;
+
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
       camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -114,26 +115,28 @@ public:
   void HandleInput(GLFWwindow *window, int key, int scancode, int action,
                    int mods) override {
     if (key == GLFW_KEY_TAB && action == GLFW_PRESS) {
-      isCursorHidden = !isCursorHidden;
-      glfwSetInputMode(window, GLFW_CURSOR,
-                       isCursorHidden ? GLFW_CURSOR_DISABLED
-                                      : GLFW_CURSOR_NORMAL);
+      changeCursorState(window);
     }
   }
 
   void HandleMouseInput(GLFWwindow *window, double xpos, double ypos) override {
-    if (!isCursorHidden)
-      return;
     float x = static_cast<float>(xpos);
     float y = static_cast<float>(ypos);
+
     if (firstMouse) {
       lastX = x;
       lastY = y;
       firstMouse = false;
     }
-    camera.ProcessMouseMovement(x - lastX, lastY - y);
+
+    float xOffset = x - lastX;
+    float yOffset = lastY - y;
+
     lastX = x;
     lastY = y;
+
+    if (isCursorHidden)
+      camera.ProcessMouseMovement(xOffset, yOffset);
   }
 
   void ImGuiLayer() override {
@@ -180,6 +183,31 @@ public:
   }
 
 private:
+  void changeCursorState(GLFWwindow *window) {
+
+    double xpos = 0, ypos = 0;
+    if (isCursorHidden) {
+      glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_FALSE);
+      glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+      isCursorHidden = false;
+    } else {
+
+      glfwGetCursorPos(window, &xpos, &ypos);
+
+      if (glfwRawMouseMotionSupported())
+        glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+
+      glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+      isCursorHidden = true;
+    }
+
+    glfwPollEvents();
+    glfwWaitEventsTimeout(0.01);
+    glfwPostEmptyEvent();
+    glfwFocusWindow(window);
+  }
+
   void rebuildInstancBuffer() {
     if (instanceVBO) {
       glDeleteBuffers(1, &instanceVBO);
