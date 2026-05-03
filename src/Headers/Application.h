@@ -25,11 +25,9 @@ private:
   GLFWwindow *_window{nullptr};
   SceneManager sceneManager{};
 
-  ImGuiLayer *imGuiLayer;
+  std::unique_ptr<ImGuiLayer> imGuiLayer;
 
-  int frameCount;
-  double lastTime;
-  double fps;
+  float lastTime;
 
   ImVec4 clearColor = ImVec4(0.129f, 0.145f, 0.160f, 1.00f);
 
@@ -78,15 +76,6 @@ private:
     return result;
   }
 
-  static void mouseButtonCallbackStatic(GLFWwindow *window, int button,
-                                        int action, int mods) {
-    Application *app =
-        static_cast<Application *>(glfwGetWindowUserPointer(window));
-
-    if (app)
-      app->mouseButtonCallback(window, button, action, mods);
-  }
-
   void mouseButtonCallback(GLFWwindow *window, int button, int action,
                            int mods) {
 
@@ -95,32 +84,14 @@ private:
       return;
   }
 
-  static void mouseCursorPosCallbackStatic(GLFWwindow *window, double xpos,
-                                           double ypos) {
-    Application *app =
-        static_cast<Application *>(glfwGetWindowUserPointer(window));
-
-    if (app)
-      app->mouseCursorPosCallback(window, xpos, ypos);
-  }
-
   void mouseCursorPosCallback(GLFWwindow *window, double xpos, double ypos) {
 
     ImGui_ImplGlfw_CursorPosCallback(window, xpos, ypos);
-    if (ImGui::GetIO().WantCaptureMouse)
+    if (ImGui::GetIO().WantSetMousePos)
       return;
 
     Scene *scene = sceneManager.getCurrent();
     scene->HandleMouseInput(window, xpos, ypos);
-  }
-
-  static void mouseScrollBackStatic(GLFWwindow *window, double xoffset,
-                                    double yoffset) {
-    Application *app =
-        static_cast<Application *>(glfwGetWindowUserPointer(window));
-
-    if (app)
-      app->mouseScrollBack(window, xoffset, yoffset);
   }
 
   void mouseScrollBack(GLFWwindow *window, double xoffset, double yoffset) {
@@ -172,8 +143,7 @@ private:
     }
   }
 
-  static void FramebufferSizeCallback(GLFWwindow *window, int width,
-                                      int height) {
+  void FramebufferSizeCallback(GLFWwindow *window, int width, int height) {
     Application *app =
         static_cast<Application *>(glfwGetWindowUserPointer(window));
     app->handleResize(width, height);
@@ -184,6 +154,13 @@ private:
     float aspect = static_cast<float>(width) / static_cast<float>(height);
     Scene *scene = sceneManager.getCurrent();
     scene->OnResize(aspect);
+  }
+
+  template <auto memberFn, typename... Args>
+  static void glfwCallback(GLFWwindow *window, Args... args) {
+    auto *app = static_cast<Application *>(glfwGetWindowUserPointer(window));
+    if (app)
+      (app->*memberFn)(window, args...);
   }
 
 public:
@@ -199,7 +176,7 @@ public:
       return;
     }
 
-    const char *glslVersion = "#version 130";
+    const char *glslVersion = "#version 150";
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -232,18 +209,21 @@ public:
 
     std::cout << "GLFW Version: " << major << "." << minor << "\n";
 
-    imGuiLayer = new ImGuiLayer(_window, mainScale);
+    imGuiLayer = std::make_unique<ImGuiLayer>(_window, mainScale, glslVersion);
 
     if (glfwRawMouseMotionSupported())
       glfwSetInputMode(_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
     else
       std::cout << "Not Supported\n";
 
-    glfwSetKeyCallback(_window, keyCallbackStatic);
-    glfwSetMouseButtonCallback(_window, mouseButtonCallbackStatic);
-    glfwSetCursorPosCallback(_window, mouseCursorPosCallbackStatic);
-    glfwSetScrollCallback(_window, mouseScrollBackStatic);
-    glfwSetFramebufferSizeCallback(_window, FramebufferSizeCallback);
+    glfwSetKeyCallback(_window, glfwCallback<&Application::keyCallback>);
+    glfwSetMouseButtonCallback(_window,
+                               glfwCallback<&Application::mouseButtonCallback>);
+    glfwSetCursorPosCallback(
+        _window, glfwCallback<&Application::mouseCursorPosCallback>);
+    glfwSetScrollCallback(_window, glfwCallback<&Application::mouseScrollBack>);
+    glfwSetFramebufferSizeCallback(
+        _window, glfwCallback<&Application::FramebufferSizeCallback>);
 
     // BUG: Wayland tiled fenster sofort, doch es wird kein Resize Event
     // ausgelöst, darum direkt zu begin, doch es funktioniert nicht.
@@ -261,6 +241,9 @@ public:
   }
 
   void Run() {
+
+    int frameCount = 0;
+    double fps = 0.0f;
 
     float previousTime = glfwGetTime();
 
@@ -325,7 +308,6 @@ public:
   }
 
   ~Application() {
-    delete imGuiLayer;
     glfwDestroyWindow(_window);
     glfwTerminate();
   }
