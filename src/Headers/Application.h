@@ -185,7 +185,7 @@ public:
     float mainScale =
         ImGui_ImplGlfw_GetContentScaleForMonitor(glfwGetPrimaryMonitor());
     _window = glfwCreateWindow((int)(1280 * mainScale), (int)(800 * mainScale),
-                               "Brick Terrain", nullptr, nullptr);
+                               "Graphic Engine", nullptr, nullptr);
 
     if (_window == nullptr) {
       printf("Error: Window is nullptr. %d", glfwGetError(NULL));

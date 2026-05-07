@@ -1,4 +1,3 @@
-#include "../../../../extern/soil/SOIL.h"
 // #include "../../../Headers/Core/Common/Common.h"
 #include "../../../Headers/Core/Common/OpenGLHelper.h"
 #include "../../../Headers/Core/ShaderProgram/ShaderProgram.h"

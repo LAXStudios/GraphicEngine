@@ -8,13 +8,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(IMGUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui")
 set(IMGUI_BACKEND_DIR "${IMGUI_DIR}/backend")
 set(CORE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/Core")
-set(SOIL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/soil")
-set(SOIL_LIB_DIR "${SOIL_DIR}/lib")
 
 include_directories(
   ${IMGUI_DIR}
   ${IMGUI_BACKEND_DIR}
-  ${SOIL_DIR}
   ${CORE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
@@ -34,11 +31,6 @@ find_package(GLEW REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(assimp REQUIRED CONFIG)
 
-add_library(SOIL STATIC IMPORTED)
-set_target_properties(SOIL PROPERTIES 
-  IMPORTED_LOCATION "${SOIL_LIB_DIR}/libSOIL.a"
-)
-
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${HDR_FILES})
 
 target_link_libraries(${PROJECT_NAME}
@@ -46,7 +38,6 @@ target_link_libraries(${PROJECT_NAME}
     ${GLFW_LIBRARIES}
     OpenGL::GL
     GLEW::GLEW
-    # SOIL
     glm::glm
     assimp::assimp
 )

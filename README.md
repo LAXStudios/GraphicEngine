@@ -6,6 +6,20 @@ This is a small little Project for learning Graphics Programming with `OpenGL`, 
 
 I am not a professional C++ or Graphics developer, nor a CS Student, this is just a hobby project.
 
+# Install and Build 
+The following libs you have to installed local: OpenGL, GLEW, glm, assimp.
+
+Then in build/: 
+
+```
+cmake ..
+make
+./GraphicEngine
+```
+```
+```
+
+
 # Bugs
 There is currently a Bug in GLFW, which concerns the compatibility with wayland and the its mouse behavior. The mouse wont hide when said so, you have to unfocus and refocus the window.
 
@@ -24,7 +38,7 @@ it didn't worked.
 - A Quad with the basic Gradient (QuadColoredScene)
 - Just a Polygon (PolygonScene)
 - Start Polygon with cool gradient (ColoredPolyGonScene)
-- Just a Image (ImageTextureScene)
+- Just a Image (ImageTextureScene) _bugged_
 - A Texture which is spinning (TransformationScene) _bugged_
 - Some Cubes with diffrent rotations and cute pics of a cat (CatCubes3DScene)
 - A Scene with Cubes and the introduction of a FPS camera (MovementScene) _bugged_
