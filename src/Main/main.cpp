@@ -1,4 +1,5 @@
 #include "../Headers/Application.h"
+#include "Main/Scenes/ShadowMappingScene/ShadowMappingScene.h"
 #include <memory>
 #define NOTHING
 #include "Scenes/ScenesCollection.h"
@@ -44,6 +45,8 @@ int main(int argc, char *argv[]) {
   application.RegisterScene(std::make_unique<InstancedScene>("InstancedScene"));
   application.RegisterScene(
       std::make_unique<OrbitCameraScene>("OrbitCameraScene"));
+  application.RegisterScene(
+      std::make_unique<ShadowMappingScene>("ShadowMappingScene", "Shadow"));
 
   application.Init();
 

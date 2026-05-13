@@ -6,7 +6,6 @@
 #include "Headers/Core/VertexBuffer/VertexBuffer.h"
 #include "Headers/Core/VertexBufferLayout/VertexBufferLayout.h"
 #include "Headers/Scene/Scene.h"
-#include "imgui_internal.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/vector_float3.hpp>
 #include <vector>

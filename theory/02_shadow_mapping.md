@@ -10,7 +10,7 @@ Die Grundidee ist genial einfach:
 
 Shadow Mapping implementiert genau das in zwei Render-Passes:
 
-1. **Shadow Pass**: Rendere die gesamte Szene aus Sicht der Lichtquelle. Speichere nur die Tiefe (Depth) in einer Textur — der **Shadow Map**.
+1. **Shadow Pass**: Rendere die 0 gesamte Szene aus Sicht der Lichtquelle. Speichere nur die Tiefe (Depth) in einer Textur — der **Shadow Map**.
 2. **Scene Pass**: Rendere die Szene normal. Für jeden Fragment: Vergleiche seine Tiefe (aus Lichtsicht) mit dem Wert in der Shadow Map. Ist die Tiefe größer → im Schatten.
 
 ---
@@ -292,7 +292,7 @@ public:
             glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
-
+    
     void Update(float dt) override {
         deltaTime = dt;
         if (animateLight) {
