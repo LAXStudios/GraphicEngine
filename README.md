@@ -50,6 +50,7 @@ it didn't worked.
 - Cubes with Textures (diffuse and specular) lighted by multiple Point Lights (BasicMultipleLightsScene)
 - Scene with loading  a 3D Model (backpack) via assimp and applying diffuse Texture (ModelLoadingScene)
 - Instancing Scene with textured cubes and on the fly count changing (InstancedScene)
+- Shadow Mapping Scene (ShadowMappingScene)
 
 # Use of AI
 I used Lumo by Proton for basic questions, with the second "major" bug, I switched to claude code, and it pointed the bug out (embarrassing).

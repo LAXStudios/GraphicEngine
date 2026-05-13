@@ -14,3 +14,4 @@
 #include "OrbitCameraScene/OrbitCameraScene.h"
 #include "QuadColoredScene/QuadColoredScene.h"
 // #include "TransformationScene/TransformationScene.h"
+#include "ShadowMappingScene/ShadowMappingScene.h"
