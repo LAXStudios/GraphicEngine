@@ -55,10 +55,10 @@ private:
 public:
   ShadowMappingScene(const std::string &name, const std::string &category)
       : Scene(name, category) {
-    camera.target = glm::vec3(-2.0f, 0.0f, -5.0f);
-    camera.azimuth = 35.0f;
+    camera.target = glm::vec3(0.0f);
+    camera.azimuth = 45.0f;
     camera.elevation = 30.0f;
-    camera.distance = 15.0f;
+    camera.distance = 25.0f;
   }
 
   void InitScene(GLFWwindow *window) override {
@@ -226,9 +226,7 @@ public:
 
 private:
   void setupGeometry() {
-    // Boden (großes Quad mit Normals)
     float floorVerts[] = {
-        // pos                  normal           texcoord
         -10.f, 0.f,  -10.f, 0.f,   1.f,   0.f,  0.0f, 10.0f, 10.f,  0.f,
         10.f,  0.f,  1.f,   0.f,   10.0f, 0.0f, 10.f, 0.f,   -10.f, 0.f,
         1.f,   0.f,  10.0f, 10.0f, 10.f,  0.f,  10.f, 0.f,   1.f,   0.f,
