@@ -1,5 +1,6 @@
 #pragma once
 #include "glm/glm.hpp"
+#include "imgui_impl_glfw.h"
 
 enum CameraMovement {
   FORWARD,
@@ -40,6 +41,9 @@ public:
             float yaw, float pitch);
 
   glm::mat4 GetViewMatrix();
+
+  void ProcessStandardInput(GLFWwindow *window, float deltaTime,
+                            float isCursorHidden = true);
 
   void ProcessKeyboard(CameraMovement direction, float deltaTime);
 

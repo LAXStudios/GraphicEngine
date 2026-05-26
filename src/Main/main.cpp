@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
       std::make_unique<OrbitCameraScene>("OrbitCameraScene"));
   application.RegisterScene(
       std::make_unique<ShadowMappingScene>("ShadowMappingScene", "Shadow"));
+  application.RegisterScene(std::make_unique<TerrainGenerationScene>(
+      "TerrainGenerationScene", "Terrain"));
 
   application.Init();
 

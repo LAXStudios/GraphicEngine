@@ -30,6 +30,20 @@ glm::mat4 FPSCamera::GetViewMatrix() {
   return glm::lookAt(Position, Position + Front, Up);
 }
 
+void FPSCamera::ProcessStandardInput(GLFWwindow *window, float deltaTime,
+                                     float isCursorHidden) {
+  if (isCursorHidden) {
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+      this->ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+      this->ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+      this->ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+      this->ProcessKeyboard(RIGHT, deltaTime);
+  }
+}
+
 void FPSCamera::ProcessKeyboard(CameraMovement direction, float deltaTime) {
   float velocity = MovementSpeed * deltaTime;
   if (direction == FORWARD)

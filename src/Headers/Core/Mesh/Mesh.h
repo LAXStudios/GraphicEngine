@@ -3,7 +3,6 @@
 #include "../Common/Common.h"
 #include <GL/gl.h>
 #include <glm/glm.hpp>
-#include <memory>
 #include <vector>
 
 struct Vertex {

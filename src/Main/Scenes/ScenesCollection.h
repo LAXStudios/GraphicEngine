@@ -15,3 +15,4 @@
 #include "QuadColoredScene/QuadColoredScene.h"
 // #include "TransformationScene/TransformationScene.h"
 #include "ShadowMappingScene/ShadowMappingScene.h"
+#include "TerrainGenerationScene/TerrainGenerationScene.h"
