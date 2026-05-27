@@ -43,7 +43,7 @@ public:
     shaderProgram = new ShaderProgram(
         programPath("Main/Scenes/TerrainGenerationScene/Shaders/terrain.glsl"));
 
-    terrainMesh = new TerrainMesh(100, 100, 2.5f);
+    terrainMesh = new TerrainMesh(100, 100, 0.5f);
 
     glCall(glEnable(GL_DEPTH_TEST));
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

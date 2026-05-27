@@ -28,6 +28,7 @@ private:
 
   std::vector<TerrainVertex> generateGrid(int width, int height, float spacing);
   std::vector<unsigned int> generateIndices(int width, int height);
+  glm::vec3 computeNormal(int x, int z, int width, int height);
 
 public:
   TerrainMesh(int width, int height, float spacing);

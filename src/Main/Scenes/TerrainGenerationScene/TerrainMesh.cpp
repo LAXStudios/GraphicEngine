@@ -4,6 +4,9 @@
 #include "Headers/Core/ShaderProgram/ShaderProgram.h"
 #include <cmath>
 #include <cstddef>
+#include <glm/common.hpp>
+#include <glm/ext/quaternion_geometric.hpp>
+#include <glm/ext/vector_float3.hpp>
 #include <vector>
 
 TerrainMesh::TerrainMesh(int width, int height, float spacing) {
@@ -103,6 +106,25 @@ std::vector<TerrainVertex> TerrainMesh::generateGrid(int width, int height,
   }
 
   return vertices;
+}
+
+int getIndex(int px, int pz, int width, int height) {
+  px = glm::clamp(px, 0, width - 1);
+  pz = glm::clamp(pz, 0, height - 1);
+
+  return pz * width + px;
+}
+
+glm::vec3 TerrainMesh::computeNormal(int x, int z, int height, int width) {
+  // Get the points arround the current point
+
+  float pointLeft = vertices[getIndex(x - 1, z, width, height)].position.y;
+  float pointRight = vertices[getIndex(x + 1, z, width, height)].position.y;
+  float pointNorth = vertices[getIndex(x, z - 1, width, height)].position.y;
+  float pointSouth = vertices[getIndex(x, z + 1, width, height)].position.y;
+
+  return glm::normalize(
+      glm::vec3(pointLeft - pointRight, 2.0f, pointNorth - pointSouth));
 }
 
 std::vector<unsigned int> TerrainMesh::generateIndices(int width, int height) {
