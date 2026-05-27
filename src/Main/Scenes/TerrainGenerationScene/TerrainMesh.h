@@ -1,6 +1,8 @@
 #pragma once
 
+#include "../../../Headers/Core/Noise/PerlinNoise.h"
 #include "Headers/Core/Mesh/Mesh.h"
+#include "Headers/Core/Noise/PerlinNoise.h"
 #include "Headers/Core/ShaderProgram/ShaderProgram.h"
 #include <glm/ext/vector_float2.hpp>
 #include <glm/ext/vector_float3.hpp>
@@ -23,15 +25,18 @@ private:
 
   bool buffersInitialized = false;
 
+  PerlinNoise noise;
+
   void setupMesh();
   void cleanupMesh();
 
   std::vector<TerrainVertex> generateGrid(int width, int height, float spacing);
   std::vector<unsigned int> generateIndices(int width, int height);
-  glm::vec3 computeNormal(int x, int z, int width, int height);
+  glm::vec3 computeNormal(int x, int z, int width, int height,
+                          std::vector<TerrainVertex> verts);
 
 public:
-  TerrainMesh(int width, int height, float spacing);
+  TerrainMesh(int width, int height, float spacing, unsigned int seed);
 
   TerrainMesh(const TerrainMesh &) = delete;
   TerrainMesh &operator=(const Mesh &) = delete;

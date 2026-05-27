@@ -9,7 +9,9 @@
 #include <glm/ext/vector_float3.hpp>
 #include <vector>
 
-TerrainMesh::TerrainMesh(int width, int height, float spacing) {
+TerrainMesh::TerrainMesh(int width, int height, float spacing,
+                         unsigned int seed)
+    : noise(seed) {
   vertices = generateGrid(width, height, spacing);
   indices = generateIndices(width, height);
   setupMesh();
@@ -90,38 +92,49 @@ std::vector<TerrainVertex> TerrainMesh::generateGrid(int width, int height,
     for (int x = 0; x < width; x++) {
       TerrainVertex vertex;
 
+      float frequency = 0.05f;
+      float h = noise.noise(x * frequency, z * frequency);
+
       vertex.position.x = (x - width * 0.5f) * spacing;
       vertex.position.z = (z - height * 0.5f) * spacing;
       float sx = std::sin(vertex.position.x * 0.4f);
       float cz = std::cos(vertex.position.z * 0.4f);
-      vertex.position.y = ((sx * cz) + 1.0f) * 0.5f * 5.0f;
+      // vertex.position.y = ((sx * cz) + 1.0f) * 0.5f * 5.0f;
+
+      vertex.position.y = h * 20.0f;
 
       vertex.uv.x = (float)x / (width - 1);
       vertex.uv.y = (float)z / (height - 1);
 
-      vertex.normal = glm::vec3(0.0f, 1.0f, 0.0f);
-
       vertices.push_back(vertex);
+    }
+  }
+
+  for (int z = 0; z < height; z++) {
+    for (int x = 0; x < width; x++) {
+      vertices[z * width + x].normal =
+          computeNormal(x, z, height, width, vertices);
     }
   }
 
   return vertices;
 }
 
-int getIndex(int px, int pz, int width, int height) {
-  px = glm::clamp(px, 0, width - 1);
-  pz = glm::clamp(pz, 0, height - 1);
+glm::vec3 TerrainMesh::computeNormal(int x, int z, int height, int width,
+                                     std::vector<TerrainVertex> verts) {
+  // look at this lambda, chefs kiss, gets all local stuff by ref [&] and
+  // returns -> int
+  auto getIndex = [&](int px, int pz) -> int {
+    px = glm::clamp(px, 0, width - 1);
+    pz = glm::clamp(pz, 0, height - 1);
+    return pz * width + px;
+  };
 
-  return pz * width + px;
-}
-
-glm::vec3 TerrainMesh::computeNormal(int x, int z, int height, int width) {
   // Get the points arround the current point
-
-  float pointLeft = vertices[getIndex(x - 1, z, width, height)].position.y;
-  float pointRight = vertices[getIndex(x + 1, z, width, height)].position.y;
-  float pointNorth = vertices[getIndex(x, z - 1, width, height)].position.y;
-  float pointSouth = vertices[getIndex(x, z + 1, width, height)].position.y;
+  float pointLeft = verts[getIndex(x - 1, z)].position.y;
+  float pointRight = verts[getIndex(x + 1, z)].position.y;
+  float pointNorth = verts[getIndex(x, z - 1)].position.y;
+  float pointSouth = verts[getIndex(x, z + 1)].position.y;
 
   return glm::normalize(
       glm::vec3(pointLeft - pointRight, 2.0f, pointNorth - pointSouth));

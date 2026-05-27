@@ -450,7 +450,13 @@ float frequency = 0.05f;
 float h = noise.noise01(x * frequency, z * frequency);
 vertex.position.y = h * maxHeight;
 ```
-
+%%
+```git
+- float h = noise.noise01(...);
+=================
++ float h = noise.noise(...);
+```
+%%
 ### Was du nach Schritt 3 siehst
 
 Dein erstes Noise-Terrain. Es wirkt schon deutlich natuerlicher als sin/cos.
@@ -466,16 +472,16 @@ Aendere den Seed — komplett andere Landschaft. Aendere die Frequenz — komple
 
 ### Warum Parameter verstehen, bevor man sie nutzt?
 
-Bevor wir mehrere Noise-Schichten uebereinanderlegen, muessen wir verstehen
-was `frequency` eigentlich *bedeutet* und wie sie das Terrain veraendert.
+Bevor wir mehrere Noise-Schichten übereinander legen, müssen wir verstehen
+was `frequency` eigentlich *bedeutet* und wie sie das Terrain verändert.
 
 ### Denk selbst nach — Frequenz-Intuition
 
-Stell dir vor du faehrst mit dem Auto ueber eine Strasse mit Wellen.
-- **Niedrige Frequenz:** die Wellen sind weit auseinander — du faehrst langsam auf und ab
+Stell dir vor du fährst mit dem Auto über eine Strasse mit Wellen.
+- **Niedrige Frequenz:** die Wellen sind weit auseinander — du fährst langsam auf und ab
 - **Hohe Frequenz:** die Wellen sind eng — du hoppelst schnell
 
-Was passiert wenn du `frequency` in deinem Code von `0.01f` auf `0.5f` erhoehs?
+Was passiert wenn du `frequency` in deinem Code von `0.01f` auf `0.5f` erhöhst?
 Stelle eine Hypothese auf, dann probiere es aus.
 
 > [!question]- Aufloesung
@@ -495,13 +501,13 @@ Stelle eine Hypothese auf, dann probiere es aus.
 
 ### Aufgabe 4.1 — Visualisierung bauen
 
-Fuege in `TerrainGenerationScene.h` unter `ImGuiLayer()` Slider fuer
+Füge in `TerrainGenerationScene.h` unter `ImGuiLayer()` Slider für
 Frequenz und Amplitude hinzu. Wenn du den Slider bewegst, soll das Terrain
 **sofort** neu generiert werden.
 
 Das erfordert:
 1. Frequenz und Amplitude als Member-Variablen in der Scene
-2. Ein Terrain-Rebuild wenn sie sich aendern
+2. Ein Terrain-Rebuild wenn sie sich ändern
 3. Die Noise-Berechnung parametrisierbar machen
 
 > [!tip]- Hint: Wie die Parameter in den Mesh kommen
