@@ -2,7 +2,6 @@
 #include "Headers/Core/Common/Common.h"
 #include "Headers/Core/Common/ErrorHandling.h"
 #include "Headers/Core/ShaderProgram/ShaderProgram.h"
-#include <cmath>
 #include <cstddef>
 #include <glm/common.hpp>
 #include <glm/ext/quaternion_geometric.hpp>
@@ -92,16 +91,13 @@ std::vector<TerrainVertex> TerrainMesh::generateGrid(int width, int height,
     for (int x = 0; x < width; x++) {
       TerrainVertex vertex;
 
-      float frequency = 0.05f;
+      float frequency = 0.04f;
       float h = noise.noise(x * frequency, z * frequency);
 
       vertex.position.x = (x - width * 0.5f) * spacing;
       vertex.position.z = (z - height * 0.5f) * spacing;
-      float sx = std::sin(vertex.position.x * 0.4f);
-      float cz = std::cos(vertex.position.z * 0.4f);
-      // vertex.position.y = ((sx * cz) + 1.0f) * 0.5f * 5.0f;
 
-      vertex.position.y = h * 20.0f;
+      vertex.position.y = h * 10.0f;
 
       vertex.uv.x = (float)x / (width - 1);
       vertex.uv.y = (float)z / (height - 1);
