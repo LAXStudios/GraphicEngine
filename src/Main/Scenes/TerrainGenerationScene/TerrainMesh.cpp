@@ -8,10 +8,10 @@
 #include <glm/ext/vector_float3.hpp>
 #include <vector>
 
-TerrainMesh::TerrainMesh(int width, int height, float spacing,
-                         unsigned int seed)
+TerrainMesh::TerrainMesh(int width, int height, float spacing, float amplitude,
+                         float frequency, unsigned int seed)
     : noise(seed) {
-  vertices = generateGrid(width, height, spacing);
+  vertices = generateGrid(width, height, spacing, amplitude, frequency);
   indices = generateIndices(width, height);
   setupMesh();
 }
@@ -56,12 +56,25 @@ void TerrainMesh::setupMesh() {
   buffersInitialized = true;
 }
 
+void TerrainMesh::updateMesh() {
+  glCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
+  glCall(glBufferSubData(GL_ARRAY_BUFFER, 0,
+                         vertices.size() * sizeof(TerrainVertex),
+                         vertices.data()));
+}
+
 void TerrainMesh::Draw(ShaderProgram &shaderProgram) {
   shaderProgram.Bind();
   glBindVertexArray(VAO);
   glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()),
                  GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);
+}
+
+void TerrainMesh::RegenerateGrid(int width, int height, float spacing,
+                                 float amplitude, float frequency) {
+  vertices = generateGrid(width, height, spacing, amplitude, frequency);
+  updateMesh();
 }
 
 void TerrainMesh::cleanupMesh() {
@@ -83,7 +96,9 @@ void TerrainMesh::cleanupMesh() {
 }
 
 std::vector<TerrainVertex> TerrainMesh::generateGrid(int width, int height,
-                                                     float spacing) {
+                                                     float spacing,
+                                                     float amplitude,
+                                                     float frequency) {
   std::vector<TerrainVertex> vertices;
   vertices.reserve(width * height);
 
@@ -91,13 +106,13 @@ std::vector<TerrainVertex> TerrainMesh::generateGrid(int width, int height,
     for (int x = 0; x < width; x++) {
       TerrainVertex vertex;
 
-      float frequency = 0.04f;
+      // float frequency = 0.04f;
       float h = noise.noise(x * frequency, z * frequency);
 
       vertex.position.x = (x - width * 0.5f) * spacing;
       vertex.position.z = (z - height * 0.5f) * spacing;
 
-      vertex.position.y = h * 10.0f;
+      vertex.position.y = h * amplitude;
 
       vertex.uv.x = (float)x / (width - 1);
       vertex.uv.y = (float)z / (height - 1);

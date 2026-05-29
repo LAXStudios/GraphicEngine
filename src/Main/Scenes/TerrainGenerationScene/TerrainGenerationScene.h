@@ -6,6 +6,7 @@
 #include "Headers/Core/ShaderProgram/ShaderProgram.h"
 #include "Headers/Scene/Scene.h"
 #include "TerrainMesh.h"
+#include "imgui.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
@@ -26,7 +27,11 @@ private:
   bool isOrbiting = false;
   bool isPanning = false;
 
-  float maxHeight = 5.0f;
+  bool terrainUpdated = false;
+
+  float amplitude = 5.0f;
+  float frequency = 0.04f;
+
   glm::vec3 lightDir = glm::normalize(glm::vec3(1.0f, 3.0f, 1.0f));
   glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
@@ -43,7 +48,7 @@ public:
     shaderProgram = new ShaderProgram(
         programPath("Main/Scenes/TerrainGenerationScene/Shaders/terrain.glsl"));
 
-    terrainMesh = new TerrainMesh(100, 100, 0.5f, 42);
+    terrainMesh = new TerrainMesh(100, 100, 0.5f, amplitude, frequency, 42);
 
     glCall(glEnable(GL_DEPTH_TEST));
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -61,11 +66,17 @@ public:
     shaderProgram->setUniformMatrix4fv("model", model);
     shaderProgram->setUniformMatrix4fv("view", view);
     shaderProgram->setUniformMatrix4fv("proj", proj);
-    shaderProgram->setUniform1f("maxHeight", maxHeight);
+    shaderProgram->setUniform1f("maxHeight", amplitude - 2.0f);
     shaderProgram->setUniform3fv("lightDir", lightDir);
     shaderProgram->setUniform3fv("lightColor", lightColor);
 
-    terrainMesh->Draw(*shaderProgram);
+    if (terrainUpdated) {
+      terrainMesh->RegenerateGrid(100, 100, 0.5, amplitude, frequency);
+      terrainMesh->Draw(*shaderProgram);
+      terrainUpdated = false;
+    } else {
+      terrainMesh->Draw(*shaderProgram);
+    }
   }
 
   void HandleInput(GLFWwindow *window) override {
@@ -134,7 +145,10 @@ public:
 
   void ImGuiLayer() override {
     ImGui::Begin("Terrain", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    ImGui::SliderFloat("Max Height", &maxHeight, 1.0f, 20.0f);
+    if (ImGui::SliderFloat("Amplitude", &amplitude, 1.0f, 20.0f))
+      terrainUpdated = true;
+    if (ImGui::SliderFloat("Frequency", &frequency, 0.01f, 0.1f))
+      terrainUpdated = true;
     ImGui::SliderFloat3("Light Dir", &lightDir.x, -1.0f, 1.0f);
     ImGui::ColorEdit3("Light Color", &lightColor.x);
     ImGui::Separator();

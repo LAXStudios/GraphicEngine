@@ -29,14 +29,17 @@ private:
 
   void setupMesh();
   void cleanupMesh();
+  void updateMesh();
 
-  std::vector<TerrainVertex> generateGrid(int width, int height, float spacing);
+  std::vector<TerrainVertex> generateGrid(int width, int height, float spacing,
+                                          float amplitude, float frequency);
   std::vector<unsigned int> generateIndices(int width, int height);
   glm::vec3 computeNormal(int x, int z, int width, int height,
                           std::vector<TerrainVertex> verts);
 
 public:
-  TerrainMesh(int width, int height, float spacing, unsigned int seed);
+  TerrainMesh(int width, int height, float spacing, float amplitude,
+              float frequency, unsigned int seed);
 
   TerrainMesh(const TerrainMesh &) = delete;
   TerrainMesh &operator=(const Mesh &) = delete;
@@ -47,4 +50,6 @@ public:
   ~TerrainMesh();
 
   void Draw(ShaderProgram &shaderProgram);
+  void RegenerateGrid(int width, int height, float spacing, float amplitude,
+                      float frequency);
 };
