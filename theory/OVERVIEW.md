@@ -10,3 +10,4 @@ This folder Contains Notes of my learnings. Be advised that these Notes are in G
 | 04_frustum_culling.md | Objekte außerhalb des Sichtbereichs überspringen |
 | 05_orbit_camera.md | Orbit-/Blender-Kamerasteuerung |
 | 06_dynamic_terrain_generation.md | Prozedurales Terrain mit Noise und Chunks |
+| TUTORIAL_GUIDELINES.md | Stil- und Strukturrichtlinien fuer neue Tutorials |
